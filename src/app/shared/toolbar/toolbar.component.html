@@ -3,17 +3,16 @@
     <span fxFlex fxFlexOffset="10px">
   <button mat-button
           color="primary"
-          class="font"
-          routerLink="/" >
+          (click)="home()">
           <img src="../../../assets/logo.png" height="64" width="64"/>
     WishMe
     </button>
     </span>
   <div *ngIf="isLoggedIn == true">
-    <button mat-icon-button (click)="logout()" color="primary">Logout</button>
+    <button mat-button (click)="logout()" color="primary">Logout</button>
   </div>
   <div *ngIf="isLoggedIn != true">
-    <button mat-icon-button routerLink="/login" color="primary">Login</button>
+    <button mat-button (click)="login()" color="primary">Login</button>
   </div>
 </mat-toolbar-row>
 </mat-toolbar>
