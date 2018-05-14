@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {WishlistsModule} from './wishlists/wishlists.module';
+
 
 
 @NgModule({
@@ -18,9 +20,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRoutingModule,
     AuthModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    WishlistsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
