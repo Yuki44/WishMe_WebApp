@@ -23,4 +23,8 @@ export class ToolbarComponent implements OnInit {
     this.route.navigateByUrl('/');
   }
 
+  logout(){
+
+  }
+
 }
