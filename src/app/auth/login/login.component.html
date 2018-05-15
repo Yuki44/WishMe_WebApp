@@ -1,29 +1,39 @@
-<br>
+
 <br>
 <div fxLayoutAlign="center">
-<mat-card>
-            <mat-card-header>
-              <mat-card-title><h2>Login</h2></mat-card-title>
+<mat-card  fxFlex="50">
+            <mat-card-header class="center">
+              <mat-card-title><h1>Login</h1></mat-card-title>
             </mat-card-header>
             <form (ngSubmit)="login()" [formGroup]="loginForm" fxLayout="column" novalidate>
             <mat-card-content>
               <div>
-                  <mat-form-field>
+                  <mat-form-field fxFill>
                     <input matInput placeholder="Email" formControlName="email">
                   </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
+                    <mat-form-field fxFill>
                       <input matInput placeholder="Password" type="password" formControlName="password">
                     </mat-form-field>
                   </div>
+              <mat-card-actions fxLayoutAlign="center">
+                <div fxFlexFill>
+                  <div>
+                    <br>
+                    <button mat-raised-button color="accent" fxFlexFill><p style="color: white">Login</p></button>
+                  </div>
+                </div>
+
+              </mat-card-actions>
             </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LOGIN</button>
-              <br>
-              <button mat-button>SIGN UP</button>
-            </mat-card-actions>
+
           </form>
+  <label fxLayoutAlign="center">
+    <span> Not a user yet? <button mat-icon-button (click)="signUp()" color="accent"> Sign up </button> </span>
+
+  </label>
+
           </mat-card>
           </div>
 

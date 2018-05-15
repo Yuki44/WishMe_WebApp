@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../shared/user.service';
 import { MatSnackBar } from '@angular/material';
 import { FileStorageService } from '../../shared/storage/file-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -35,7 +36,8 @@ export class EditProfileComponent implements OnInit {
   constructor(private userService: UserService,
               private fb: FormBuilder,
               private snack: MatSnackBar,
-              private fileStorageService: FileStorageService) {
+              private fileStorageService: FileStorageService,
+              private route: Router) {
     this.profileForm = fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       address: '',
@@ -62,6 +64,7 @@ export class EditProfileComponent implements OnInit {
     model.uid = this.user.uid;
     this.userService.updateUser(model)
       .then(() => {
+        this.route.navigateByUrl("/home");
         this.snack.open('user saved', null, {
           duration: 2000
         });
@@ -102,13 +105,12 @@ export class EditProfileComponent implements OnInit {
       this.srcLoaded = false;
       console.log(fileList.item(0));
       const file = fileList.item(0);
-      const path = 'edit-profile-images/' + this.user.uid;
+      const path = 'profile-images/' + this.user.uid;
       this.fileStorageService.upload(path, file).downloadUrl.subscribe(
         url => {
           this.img = url;
           this.save();
           this.hovering(false);
-
         }
       );
     } else {
