@@ -3,6 +3,7 @@ import { User } from '../../shared/entities/user';
 import { Subscription } from 'rxjs/Subscription';
 import { FileStorageService } from '../../shared/storage/file-storage.service';
 import { UserService } from '../shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,8 @@ export class ProfileComponent implements OnInit {
   userSub: Subscription;
   img: String;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private route: Router) { }
 
   ngOnInit() {
     this.userSub = this.userService.getUserWithProfileUrl()
@@ -24,6 +26,10 @@ export class ProfileComponent implements OnInit {
         console.log(user.profileImgUrl);
         this.img = user.profileImgUrl;
       });
+  }
+
+  edit(){
+    this.route.navigateByUrl("/editprofile");
   }
 
 }

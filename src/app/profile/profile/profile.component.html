@@ -2,6 +2,8 @@
 <div fxLayout="row" fxLayoutAlign="center" *ngIf="user">
   <mat-card  >
     <mat-card-header>
+
+
       <div class="center">
         <img style="width:125px;height:125px;"
              [hidden]="!srcLoaded"
@@ -23,7 +25,15 @@
     <mat-card-content>
       <h1><mat-icon style="color: lightgrey">location_on</mat-icon>   {{user.address}}</h1>
     </mat-card-content>
-
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <button mat-fab
+                color="accent"
+                (click)="edit()">
+          <mat-icon style="color:white;">edit</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
   </mat-card>
 </div>
 <br>
