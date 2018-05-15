@@ -1,27 +1,4 @@
-<br>
-<div fxLayout="row" class="flex-container" *ngIf="user">
-  <mat-card  >
-    <mat-card-header>
-      <div class="center">
-        <img style="width:125px;height:125px;"
-             [hidden]="!srcLoaded"
-             [src]="img"
-             mat-card-avatar
-             (load)="srcLoaded = true">
-        <mat-spinner
-          mat-card-avatar
-          diameter="100"
-          *ngIf="!srcLoaded"></mat-spinner>
-      </div>
-
-    </mat-card-header>
-
-  </mat-card>
-</div>
-<br>
-
-
-
+<app-profile></app-profile>
 
 
 
