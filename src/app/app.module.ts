@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {WishlistsModule} from './wishlists/wishlists.module';
+import {WishlistsModule} from './home/home.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -15,6 +15,7 @@ import { MatButtonModule, MatCard, MatFormField, MatFormFieldModule, MatInputMod
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     SharedModule,
     FlexLayoutModule,
     WishlistsModule,
-     MatButtonModule,
+    MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
     MatFormFieldModule,
@@ -37,7 +38,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent],
