@@ -4,14 +4,14 @@
   <button mat-button disableRipple="true" (click)="home()">
     <img src="../../../assets/logo.png" height="64" width="64"/>
    </button>
-      <span fxFlex>
+      <span fxFlex="calc(80%)">
     <button mat-icon-button disableRipple="true"(click)="home()">
       <h1 style="color: white">
         WishMe
       </h1>
         </button>
       </span>
-      <span>
+      <span fxFlex>
          <div *ngIf="isLoggedIn == true">
         <button mat-icon-button (click)="logout()" disableRipple="true"><h1 style="color: white">Logout</h1></button>
       </div>

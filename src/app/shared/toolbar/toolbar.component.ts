@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/shared/auth.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,11 +11,17 @@ import { Router } from '@angular/router';
 export class ToolbarComponent implements OnInit {
 
   isLoggedIn: boolean;
-  constructor(private route: Router) {
+  constructor(private authService: AuthService,
+              private route: Router,
+              private snack: MatSnackBar) {
     this.isLoggedIn = false;
   }
 
   ngOnInit() {
+    this.authService.isAuthenticated()
+      .subscribe(isLogged => {
+        this.isLoggedIn = isLogged;
+      });
   }
 
   login() {
@@ -24,7 +32,13 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout(){
-
+    this.authService.logout()
+      .then(() => this.route.navigateByUrl('/login'))
+      .then(() => this.snack.open('You are now logged out!', null, {
+        duration: 4000
+      }))
+      .catch(error => this.snack.open(error, null, {
+        duration: 4000
+      }));
   }
-
 }
