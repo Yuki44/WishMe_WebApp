@@ -1,3 +1,4 @@
+import { SignupComponent } from './auth/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'wishlist', component: WishlistListComponent},
   { path: 'wishes', component: WishListComponent},
-  { path: 'profile', component: ProfileComponent}
+ // { path: 'profile', component: ProfileComponent},
+  { path: 'signup', component: SignupComponent}
 
 ];
 
