@@ -1,9 +1,9 @@
+import { WishListComponent } from './wish-list/wish-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WishListComponent } from './wish-list/wish-list.component';
 import {MatButtonModule, MatCheckboxModule, MatDividerModule, MatIconModule, MatListModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
-import { CovalentLayoutModule, CovalentCommonModule, CovalentMediaModule, CovalentExpansionPanelModule, CovalentStepsModule, CovalentDialogsModule, CovalentLoadingModule, CovalentSearchModule, CovalentPagingModule, CovalentNotificationsModule, CovalentMenuModule, CovalentDataTableModule, CovalentMessageModule} from '@covalent/core';
+import { AddWishComponent } from './add-wish/add-wish.component';
 
 @NgModule({
   imports: [
@@ -13,7 +13,8 @@ import { CovalentLayoutModule, CovalentCommonModule, CovalentMediaModule, Covale
     MatCheckboxModule,
     MatCardModule,
     MatDividerModule,
-    MatListModule,
+    MatListModule
+    /*
     CovalentCommonModule,
     CovalentLayoutModule,
     CovalentMediaModule,
@@ -27,8 +28,8 @@ import { CovalentLayoutModule, CovalentCommonModule, CovalentMediaModule, Covale
     CovalentMenuModule,
     CovalentDataTableModule,
     CovalentMessageModule
-
+*/
   ],
-  declarations: [WishListComponent]
+  declarations: [ WishListComponent, AddWishComponent]
 })
 export class WishesModule { }
