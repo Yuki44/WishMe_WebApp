@@ -49,14 +49,20 @@
 
   <mat-card fxFlexFill>
 
-    <mat-card-actions>
-      <button mat-button color="accent" class="text-upper">Action</button>
-      <button mat-button class="text-upper">Other action</button>
-    </mat-card-actions>
+
     <mat-card-title>Wishlist Name</mat-card-title>
 
     <mat-card-subtitle>Subtitle (Source): https://stackblitz.com/edit/card-patterns?file=app%2Fapp.component.html</mat-card-subtitle>
+    <mat-card-actions style="padding-left: 2%">
+      <div fxLayout="column" class="fab" style="background-color: transparent">
+        <button (click)="addWish()" fxFlexAlign="end" mat-fab
+                style="alignment: bottom" color="accent">
+          <mat-icon style="color: white; padding-left: 2%">add</mat-icon ></button> <p>Add a wish</p>
+      </div>
 
+      <!--<button mat-button color="accent" class="text-upper">Action</button>-->
+      <!--<button mat-button class="text-upper">Other action</button>-->
+    </mat-card-actions>
     <div fxLayout="row">
       <mat-card>
         <mat-card-title-group>
@@ -72,11 +78,8 @@
     </mat-card-content>
     <!--<mat-divider></mat-divider>-->
   </mat-card>
-
-<div fxLayout="column" class="fab" style="background-color: transparent">
-    <button (click)="addWish()" fxFlexAlign="end" mat-fab style="alignment: bottom" color="accent"
-    ><mat-icon style="color: white">add</mat-icon></button>
 </div>
+
 
 
 
