@@ -44,6 +44,4 @@ export class AuthService {
         return {email: authState.email, uid: authState.uid };
       });
   }
-
-
 }

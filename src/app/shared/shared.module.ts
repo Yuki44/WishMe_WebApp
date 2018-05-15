@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatButtonModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FileStorageService } from './storage/file-storage.service';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { UploadDirective } from './directives/upload.directive';
 
 @NgModule({
   imports: [
@@ -10,10 +13,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFireStorageModule
 
   ],
-  declarations: [ToolbarComponent],
-  exports: [ToolbarComponent, MatButtonModule, MatToolbarModule]
+  declarations: [ToolbarComponent, UploadDirective],
+  exports: [ToolbarComponent, MatButtonModule, MatToolbarModule, UploadDirective],
+  providers: [
+    FileStorageService
+  ]
 })
 export class SharedModule { }

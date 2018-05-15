@@ -1,0 +1,37 @@
+<br>
+<div fxLayout="row" class="flex-container" *ngIf="user">
+  <mat-card  >
+    <mat-card-header>
+      <div class="center">
+        <img style="width:125px;height:125px;"
+             [hidden]="!srcLoaded"
+             [src]="img"
+             mat-card-avatar
+             (load)="srcLoaded = true">
+        <mat-spinner
+          mat-card-avatar
+          diameter="100"
+          *ngIf="!srcLoaded"></mat-spinner>
+      </div>
+
+    </mat-card-header>
+
+  </mat-card>
+</div>
+<br>
+
+
+
+
+
+
+<div id="content" class="content w-container">
+  <div class="flex-container">
+    <mat-card  style="font-size: x-large; font-family: Roboto, Helvetica Neue, sans-serif; cursor: pointer;">This is a Wishlist Card</mat-card>
+  </div>
+  </div>
+  <div fxLayout="column" class="fab">
+    <button fxFlexAlign="end" mat-fab style="alignment: bottom" color="accent"><mat-icon style="color: white">playlist_add</mat-icon></button>
+</div>
+
+

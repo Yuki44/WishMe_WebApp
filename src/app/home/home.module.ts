@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WishlistListComponent } from './wishlist-list/wishlist-list.component';
-import {MatButtonModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+import { HomeComponent } from './home.component';
+import { MatButtonModule, MatCheckboxModule, MatIconModule, MatProgressSpinnerModule, MatSpinner } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 
@@ -11,8 +11,9 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
-  declarations: [WishlistListComponent]
+  declarations: [HomeComponent]
 })
 export class WishlistsModule { }
