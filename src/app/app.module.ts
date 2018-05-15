@@ -15,6 +15,7 @@ import { MatButtonModule, MatCard, MatFormField, MatFormFieldModule, MatInputMod
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {WishesModule} from './wishes/wishes.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     SharedModule,
     FlexLayoutModule,
     WishlistsModule,
+    WishesModule,
      MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
@@ -37,7 +39,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

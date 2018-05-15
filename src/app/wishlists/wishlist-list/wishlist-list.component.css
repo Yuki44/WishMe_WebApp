@@ -31,4 +31,13 @@
   padding-right: 10%;
 }
 
-
+.card-wishlist {
+font-size: x-large;
+  font-family: Roboto, Helvetica Neue, sans-serif;
+color: dimgray;
+  cursor: pointer;
+}
+.card-wishlist:hover {
+  background:#f7f7f7;
+  color: black;
+}
