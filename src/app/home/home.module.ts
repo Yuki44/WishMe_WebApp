@@ -4,6 +4,8 @@ import { HomeComponent } from './home.component';
 import { MatButtonModule, MatCheckboxModule, MatIconModule, MatProgressSpinnerModule, MatSpinner } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
+import { ProfileComponent } from '../profile/profile/profile.component';
+import { ProfileModule } from '../profile/profile.module';
 
 @NgModule({
   imports: [
@@ -12,7 +14,8 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ProfileModule
   ],
   declarations: [HomeComponent]
 })
