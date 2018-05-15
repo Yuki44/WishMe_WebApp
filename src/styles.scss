@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+@mixin theme-color-grabber($theme) {
+  $primary: map_get($theme, primary);
+  .primaryColorBG {
+    color: mat-color($primary);
+  }
+}

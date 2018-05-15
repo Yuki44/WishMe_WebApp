@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-blue, 400);
+$my-app-accent:  mat-palette($mat-blue, 300);
+$my-app-warn:    mat-palette($mat-red);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+$my-app-font: mat-typography-config(
+        $font-family: 'Nunito');
+
+@include mat-core($my-app-font);
+@include angular-material-theme($my-app-theme);

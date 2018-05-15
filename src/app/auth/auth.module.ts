@@ -1,11 +1,28 @@
+import { AuthService } from './shared/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  exports: [ MatButtonModule, MatCardModule, FlexLayoutModule ],
+  providers: [ AuthService]
 })
 export class AuthModule { }
