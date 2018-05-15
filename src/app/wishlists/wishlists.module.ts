@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WishlistListComponent } from './wishlist-list/wishlist-list.component';
 import {MatButtonModule, MatCheckboxModule, MatIconModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -10,7 +11,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
-    FlexLayoutModule
+    MatCardModule
   ],
   declarations: [WishlistListComponent]
 })
