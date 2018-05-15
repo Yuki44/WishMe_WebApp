@@ -6,6 +6,7 @@ import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   imports: [
+    CommonModule,
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
