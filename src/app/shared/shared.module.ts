@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -9,7 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSnackBarModule
 
   ],
   declarations: [ToolbarComponent],
