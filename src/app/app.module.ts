@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ProfileModule } from './profile/profile.module';
+import {WishesModule} from './wishes/wishes.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { ProfileModule } from './profile/profile.module';
     FlexLayoutModule,
     WishlistsModule,
     MatButtonModule,
+    WishesModule,
+     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
     MatFormFieldModule,

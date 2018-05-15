@@ -18,6 +18,15 @@ export class AuthService {
     return this.fireAuth.auth.signOut();
   }
 
+  signup(user: User): Promise<any> {
+    //
+    return this.fireAuth.auth.createUserWithEmailAndPassword(
+      user.email,
+      user.password
+    );
+
+ }
+
   isAuthenticated(): Observable<boolean> {
     return this.fireAuth.authState
       .map(authState => {
@@ -31,6 +40,7 @@ export class AuthService {
         if (!authState) {
           return null;
         }
+        console.log('USER ID   :' + authState.uid);
         return {email: authState.email, uid: authState.uid };
       });
   }

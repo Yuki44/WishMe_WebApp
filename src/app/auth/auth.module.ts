@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignupComponent],
   exports: [ MatButtonModule, MatCardModule, FlexLayoutModule ],
   providers: [ AuthService]
 })

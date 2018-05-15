@@ -1,0 +1,61 @@
+<br>
+<div fxLayout="row" fxLayoutAlign="center">
+    <mat-card fxFlex="50">
+        <mat-card-header>
+          <mat-card-title><h2><b>Signup</b></h2></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        <form (ngSubmit)="signup()"
+              [formGroup]="signupForm"
+              novalidate
+              fxLayout="column">
+          <mat-form-field fxFlex style="transform: perspective(1px)">
+            <input matInput
+                   placeholder="Email"
+                   formControlName="email">
+                   <mat-error *ngIf="formControllError('email', 'required')">
+                      Email is required
+                    </mat-error>
+                    <mat-error *ngIf="formControllError('email', 'email', ['required'])">
+                      Email is invalid
+                    </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field fxFlex>
+            <input matInput
+                   placeholder="Password"
+                   type="password"
+                   formControlName="password">
+                   <mat-error *ngIf="formControllError('password', 'required')">
+                    Password is required
+                  </mat-error>
+                  <mat-error *ngIf="formControllError('password', 'minLength', ['required'])">
+                    Password has to consist of at least 6 characters
+                  </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput
+                   placeholder="Repeat Password"
+                   type="password"
+                   formControlName="repeatedPass">
+                   <mat-error *ngIf="formControllError('repeatedPass', 'required')">
+                    Rrepeated password is required
+                  </mat-error>
+                  <mat-error *ngIf="formControllError('repeatedPass', 'not-matching-pass', ['required'])">
+                    Rrepeated password does not match
+                  </mat-error>
+          </mat-form-field>
+          <button mat-button
+                  color="primary"
+                  type="submit"
+                  [disabled]="signupForm.invalid">
+            Sign up
+          </button>
+          <br>
+          <button mat-button class="special" type="button" routerLink="/login">
+            Login
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
