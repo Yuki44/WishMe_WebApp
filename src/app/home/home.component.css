@@ -18,5 +18,11 @@
   padding-left: 10%;
   padding-right: 10%;
 }
+.size { font-size: 50px;}
 
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 

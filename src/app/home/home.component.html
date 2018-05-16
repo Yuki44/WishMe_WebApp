@@ -1,14 +1,45 @@
 <app-profile></app-profile>
+<br>
+  <div fxLayout="row" fxLayoutAlign="center" *ngFor="let wishlist of wishlists">
+    <mat-card fxFlex="75">
+      <div (click)="goToWishList(wishlist)">
+        <mat-card-header fxLayout="column">
+          <label fxFlex>
+            <h1>
+              <mat-icon style="color: lightgrey; padding: 40px" class="size">card_giftcard</mat-icon>
+              <span *ngIf="!edit">
+                {{wishlist.wListName}}
+              </span>
+              <span *ngIf="edit">
+                <input matInput value="{{wishlist.wListName}}">
+              </span>
+            </h1>
+          </label>
+          <div fxFlexAlign="end">
+            <div *ngIf="!edit">
+              <button mat-fab color="accent" (click)="editList()">
+                <mat-icon style="color:white;">edit</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="edit">
+              <button mat-fab color="accent" (click)="editList()">
+                <mat-icon style="color:white;">save</mat-icon>
+              </button>
+            </div>
 
-
-
-<div id="content" class="content w-container">
-  <div class="flex-container">
-    <mat-card  style="font-size: x-large; font-family: Roboto, Helvetica Neue, sans-serif; cursor: pointer;">This is a Wishlist Card</mat-card>
+          </div>
+        </mat-card-header>
+      </div>
+    </mat-card>
   </div>
-  </div>
-  <div fxLayout="column" class="fab">
-    <button fxFlexAlign="end" mat-fab style="alignment: bottom" color="accent"><mat-icon style="color: white">playlist_add</mat-icon></button>
+<div fxLayout="column" class="fab">
+  <button mat-fab style="alignment: bottom" color="accent">
+    <mat-icon style="color: white">playlist_add</mat-icon>
+  </button>
 </div>
+
+
+
+
 
 
