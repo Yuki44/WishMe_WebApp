@@ -1,8 +1,8 @@
 export class User {
-  uid: string;
+  uid?: string;
   address?: string;
   contactEmail?: string;
-  email: string;
+  email?: string;
   name?: string;
   password?: string;
   profileImgUrl?: string;
