@@ -33,14 +33,11 @@ export class SignupComponent implements OnInit {
     this.authService
       .signup(model)
       .then(user => {
-        /*
           this.router.navigateByUrl('home').then(() => {
           this.snackBar.open('Signed up!', '', {
             duration: 2000
           });
         });
-        */
-       console.log('SIGNED UP:   ' + user);
       })
       .catch(error => {
         /*

@@ -1,3 +1,4 @@
+import { AddWishComponent } from './wishes/add-wish/add-wish.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'editprofile', component: EditProfileComponent},
   { path: 'wishes', component: WishListComponent},
-  { path: 'signup', component: SignupComponent}
+  { path: 'signup', component: SignupComponent},
+  { path: 'addwish', component: AddWishComponent}
 
 ];
 

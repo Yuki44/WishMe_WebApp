@@ -11,7 +11,9 @@ export class UserService {
 
   constructor(private authService: AuthService,
               private fileStorageService: FileStorageService,
-              private afs: AngularFirestore) { }
+              private afs: AngularFirestore) {
+                afs.firestore.settings({ timestampsInSnapshots: true });
+              }
 
 
   getUser(): Observable<User> {
