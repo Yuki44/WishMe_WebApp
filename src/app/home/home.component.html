@@ -17,13 +17,13 @@
           </label>
           <div fxFlexAlign="end">
             <div *ngIf="!edit">
-              <button mat-fab color="accent" (click)="editList()">
-                <mat-icon style="color:white;">edit</mat-icon>
+              <button mat-icon-button color="accent" (click)="editList()">
+                <mat-icon >edit</mat-icon>
               </button>
             </div>
             <div *ngIf="edit">
-              <button mat-fab color="accent" (click)="editList()">
-                <mat-icon style="color:white;">save</mat-icon>
+              <button mat-icon-button color="accent" (click)="editList()">
+                <mat-icon>save</mat-icon>
               </button>
             </div>
 
