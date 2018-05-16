@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {MatButtonModule, MatCheckboxModule, MatDividerModule, MatIconModule, MatListModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import { AddWishComponent } from './add-wish/add-wish.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   imports: [
@@ -13,22 +14,8 @@ import { AddWishComponent } from './add-wish/add-wish.component';
     MatCheckboxModule,
     MatCardModule,
     MatDividerModule,
-    MatListModule
-    /*
-    CovalentCommonModule,
-    CovalentLayoutModule,
-    CovalentMediaModule,
-    CovalentExpansionPanelModule,
-    CovalentStepsModule,
-    CovalentDialogsModule,
-    CovalentLoadingModule,
-    CovalentSearchModule,
-    CovalentPagingModule,
-    CovalentNotificationsModule,
-    CovalentMenuModule,
-    CovalentDataTableModule,
-    CovalentMessageModule
-*/
+    MatListModule,
+    BarRatingModule
   ],
   declarations: [ WishListComponent, AddWishComponent]
 })
