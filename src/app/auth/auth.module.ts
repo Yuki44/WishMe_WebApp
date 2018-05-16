@@ -1,3 +1,4 @@
+import { AuthGuardService } from './shared/auth-guard.service';
 import { AuthService } from './shared/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -25,6 +26,6 @@ import { SignupComponent } from './signup/signup.component';
   ],
   declarations: [LoginComponent, SignupComponent],
   exports: [ MatButtonModule, MatCardModule, FlexLayoutModule ],
-  providers: [ AuthService]
+  providers: [ AuthService, AuthGuardService ]
 })
 export class AuthModule { }
