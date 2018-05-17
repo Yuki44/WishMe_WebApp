@@ -12,6 +12,8 @@ import { ProfileModule } from '../profile/profile.module';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
+import { EditWishlistComponent } from './edit-wishlist/edit-wishlist.component';
+import { DeleteWishlistComponent } from './delete-wishlist/delete-wishlist.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
 
 
   ],
-  declarations: [HomeComponent, AddWishlistComponent],
-  entryComponents: [AddWishlistComponent]
+  declarations: [HomeComponent, AddWishlistComponent, EditWishlistComponent, DeleteWishlistComponent],
+  entryComponents: [AddWishlistComponent, EditWishlistComponent, DeleteWishlistComponent]
 })
 export class WishlistsModule { }
