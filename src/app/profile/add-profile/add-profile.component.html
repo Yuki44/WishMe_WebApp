@@ -1,0 +1,33 @@
+<br>
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card  >
+    <mat-card-header>
+      <class="center">
+
+        <mat-spinner
+          mat-card-avatar
+          diameter="100"
+          *ngIf="!srcLoaded"></mat-spinner>
+
+    </mat-card-header>
+    <mat-card-content>
+      <h1><mat-icon style="color: lightgrey">person</mat-icon>nameee</h1>
+    </mat-card-content>
+    <mat-card-content>
+      <h1><mat-icon style="color: lightgrey">mail</mat-icon>contactemaaaail</h1>
+    </mat-card-content>
+    <mat-card-content>
+      <h1><mat-icon style="color: lightgrey">location_on</mat-icon>locatioooon</h1>
+    </mat-card-content>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <button mat-fab
+                color="accent"
+              >
+          <mat-icon style="color:white;">edit</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<br>
