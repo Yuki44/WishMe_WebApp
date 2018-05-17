@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileStorageService } from './storage/file-storage.service';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { UploadDirective } from './directives/upload.directive';
+import { WishlistService } from './services/wishlist.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { UploadDirective } from './directives/upload.directive';
   declarations: [ToolbarComponent, UploadDirective],
   exports: [ToolbarComponent, MatButtonModule, MatToolbarModule, UploadDirective],
   providers: [
-    FileStorageService
+    FileStorageService,
+    WishlistService
   ]
 })
 export class SharedModule { }
