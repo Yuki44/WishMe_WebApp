@@ -8,6 +8,10 @@ import { AuthService } from '../auth/shared/auth.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { WishList } from '../shared/entities/wish-list';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { AddWishComponent } from '../wishes/add-wish/add-wish.component';
+import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-wishlist-list',
@@ -16,17 +20,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
+  wList: WishList;
   user: User;
   userSub: Subscription;
   wishlists: WishList[];
-  edit: boolean = false;
   editForm: FormGroup;
+  addWishRef: MatDialogRef<AddWishlistComponent>;
 
 
 
   constructor(private wishListService: WishlistService,
               private fb: FormBuilder,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private dialog: MatDialog) {
     this.editForm = fb.group({
       name: ['', [Validators.required]],
     });
@@ -38,16 +44,33 @@ export class HomeComponent implements OnInit {
         this.user = user;
         this.wishListService.getWishLists(this.user.uid).subscribe(wishlists => {
           this.wishlists = wishlists;
+          console.log(wishlists);
         });
       });
+
+
   }
 
   goToWishList(wishlist: WishList){
-    console.log("wishlist clicked!" + wishlist.id);
+    console.log('wishlist clicked!' + wishlist.id);
   }
 
   editList(){
-    this.edit = true;
+  }
+  openDialog(){
+    this.wList = new WishList();
+    this.addWishRef = this.dialog.open(AddWishlistComponent, {
+      hasBackdrop: false
+    });
+    this.addWishRef.afterClosed()
+      .pipe(filter(name => name))
+      .map(name => {
+        this.wList.wListName = name;
+        this.wList.owner = this.user.uid;
+
+      }).subscribe(wlisT => {
+      this.wishListService.createWishlist(this.wList)
+    });
   }
 
 }

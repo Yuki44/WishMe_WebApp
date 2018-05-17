@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import {
-  MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule,
+  MatButtonModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule,
   MatSpinner
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -11,6 +11,7 @@ import { ProfileComponent } from '../profile/profile/profile.component';
 import { ProfileModule } from '../profile/profile.module';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
 
 @NgModule({
   imports: [
@@ -24,10 +25,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule,
+    MatInputModule
 
 
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, AddWishlistComponent],
+  entryComponents: [AddWishlistComponent]
 })
 export class WishlistsModule { }

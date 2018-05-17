@@ -7,33 +7,20 @@
           <label fxFlex>
             <h1>
               <mat-icon style="color: lightgrey; padding: 40px" class="size">card_giftcard</mat-icon>
-              <span *ngIf="!edit">
                 {{wishlist.wListName}}
-              </span>
-              <span *ngIf="edit">
-                <input matInput value="{{wishlist.wListName}}">
-              </span>
             </h1>
           </label>
           <div fxFlexAlign="end">
-            <div *ngIf="!edit">
               <button mat-icon-button color="accent" (click)="editList()">
                 <mat-icon >edit</mat-icon>
               </button>
             </div>
-            <div *ngIf="edit">
-              <button mat-icon-button color="accent" (click)="editList()">
-                <mat-icon>save</mat-icon>
-              </button>
-            </div>
-
-          </div>
         </mat-card-header>
       </div>
     </mat-card>
   </div>
 <div fxLayout="column" class="fab">
-  <button mat-fab style="alignment: bottom" color="accent">
+  <button mat-fab style="alignment: bottom" color="accent" (click)="openDialog()">
     <mat-icon style="color: white">playlist_add</mat-icon>
   </button>
 </div>
