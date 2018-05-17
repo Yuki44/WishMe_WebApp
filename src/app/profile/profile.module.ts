@@ -37,7 +37,7 @@ import { AddProfileComponent } from './add-profile/add-profile.component';
 
   ],
   declarations: [EditProfileComponent, ProfileComponent, AddProfileComponent],
-  exports: [ProfileComponent],
+  exports: [ProfileComponent, AddProfileComponent],
   providers: [
     UserService
   ]

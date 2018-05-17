@@ -16,7 +16,6 @@ export class FileStorageService {
 
   downloadUrlProfile(uid: string): Observable<any> {
     return this.afso.ref('profile-images/' + uid).getDownloadURL();
-
   }
 
 }

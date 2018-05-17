@@ -1,3 +1,4 @@
+import { AddProfileComponent } from './../../profile/add-profile/add-profile.component';
 import { User } from './../../shared/entities/user';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,12 +14,16 @@ import { matchingPassword } from '../shared/password.validator';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  userCreated: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+    this.userCreated = false;
+  }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -33,11 +38,14 @@ export class SignupComponent implements OnInit {
     this.authService
       .signup(model)
       .then(user => {
-          this.router.navigateByUrl('home').then(() => {
+        this.userCreated = true;
+        /*
+        this.router.navigateByUrl('home').then(() => {
           this.snackBar.open('Signed up!', '', {
             duration: 2000
           });
         });
+        */
       })
       .catch(error => {
         /*
@@ -45,7 +53,7 @@ export class SignupComponent implements OnInit {
           duration: 5000
         });
         */
-       console.log('ERROR:   ' + error);
+        console.log('ERROR:   ' + error);
       });
   }
 
