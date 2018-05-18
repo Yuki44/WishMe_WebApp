@@ -6,4 +6,5 @@ export class Wish {
   owner: string;
   price?: string;
   rating?: number;
+  imageUrl?: string;
 }

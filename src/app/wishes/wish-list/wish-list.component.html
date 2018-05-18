@@ -3,7 +3,6 @@
     <mat-card-title>Wishlist Name</mat-card-title>
     <mat-card-subtitle>How many wishes (wish quantity) OR Wishlist description</mat-card-subtitle>
     <div *ngFor="let wish of wishes">
-
     <div fxLayout="row">
       <div class="wish-card" fxFlexFill >
         <div class="card-header">
@@ -11,7 +10,7 @@
         </div>
         <div class="row">
           <div class="wish-image">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzBPScbXaN-3Aj-m8Fhy6U6ALzViX2edDA_Wvotf-HnLDL1hBP"
+            <img [src]="wish.imageUrl"
               class="rounded">
           </div>
           <div class="container">
@@ -25,6 +24,14 @@
             <span  class="description-text">{{wish.description}} </span>
           </div>
           </div>
+        </div>
+        <div fxFlexAlign="end">
+          <button mat-icon-button color="warn" (click)="deleteList(wishlist)">
+            <mat-icon >delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="editList(wishlist)">
+            <mat-icon >edit</mat-icon>
+          </button>
         </div>
       </div>
     </div>
