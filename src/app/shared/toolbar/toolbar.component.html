@@ -1,24 +1,23 @@
 <div class="mat-typography">
-  <mat-toolbar class="special" color="primary">
+  <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row">
   <button mat-button disableRipple="true" (click)="home()">
     <img src="../../../assets/logo.png" height="64" width="64"/>
    </button>
-      <span fxFlex="calc(80%)">
+      <span fxFlex fxFlexOffset="10px">
     <button mat-icon-button disableRipple="true"(click)="home()">
       <h1 style="color: white">
         WishMe
       </h1>
         </button>
       </span>
-      <span fxFlex>
-         <div *ngIf="isLoggedIn == true">
-        <button mat-icon-button (click)="logout()" disableRipple="true"><h1 style="color: white">Logout</h1></button>
-      </div>
       <div *ngIf="isLoggedIn != true">
         <button mat-icon-button (click)="login()" disableRipple="true"><h1 style="color: white">Login</h1></button>
       </div>
-      </span>
+      <div *ngIf="isLoggedIn == true">
+        <button mat-icon-button (click)="logout()" disableRipple="true"><h1 style="color: white">Logout</h1></button>
+      </div>
+
     </mat-toolbar-row>
   </mat-toolbar>
 </div>

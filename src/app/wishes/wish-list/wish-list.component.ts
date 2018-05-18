@@ -34,9 +34,6 @@ export class WishListComponent implements OnInit {
   }
 
 
-  // this.wishService.getWishes(params.get('id'))).subscribe(wishes =>
-  // this.wishes = wishes);
-
   addWish() {
     this.route.navigateByUrl('/createwish');
   }
