@@ -24,6 +24,9 @@ export class WishlistService {
         })
        });
   }
+  getOneWishlist(uid: string): Observable<any> {
+   return this.afs.collection('wishlist').doc(uid).valueChanges();
+  }
 
   createWishlist(list: WishList): Promise<any>{
     if (list != null) {

@@ -7,6 +7,7 @@ import { FileStorageService } from './storage/file-storage.service';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { UploadDirective } from './directives/upload.directive';
 import { WishlistService } from './services/wishlist.service';
+import { WishService } from './services/wish.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { WishlistService } from './services/wishlist.service';
   exports: [ToolbarComponent, MatButtonModule, MatToolbarModule, UploadDirective],
   providers: [
     FileStorageService,
-    WishlistService
+    WishlistService,
+    WishService
   ]
 })
 export class SharedModule { }

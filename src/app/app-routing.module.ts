@@ -13,10 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'editprofile', component: EditProfileComponent},
-  { path: 'wishes', component: WishListComponent},
+  { path: 'wishes/:id', component: WishListComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'newish', component: WishCreateComponent}
-
+  { path: 'createwish', component: WishCreateComponent}
 ];
 
 @NgModule({

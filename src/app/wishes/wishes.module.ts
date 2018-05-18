@@ -15,6 +15,7 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { WishCreateComponent } from './wish-create/wish-create.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -29,8 +30,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     FlexLayoutModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    SharedModule
   ],
-  declarations: [ WishListComponent, WishCreateComponent, WishCreateComponent]
+  declarations: [ WishListComponent, WishCreateComponent]
 })
 export class WishesModule { }
