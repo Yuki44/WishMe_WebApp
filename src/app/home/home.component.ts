@@ -14,6 +14,7 @@ import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
 import { filter } from 'rxjs/operators';
 import { EditWishlistComponent } from './edit-wishlist/edit-wishlist.component';
 import { DeleteWishlistComponent } from './delete-wishlist/delete-wishlist.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wishlist-list',
@@ -35,7 +36,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private wishListService: WishlistService,
               private auth: AuthService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private route: Router) {
 
   }
 
@@ -54,6 +56,8 @@ export class HomeComponent implements OnInit {
 
   goToWishList(wishlist: WishList){
     console.log('wishlist clicked!' + wishlist.id);
+    this.route.navigateByUrl('/wishes/' + wishlist.id);
+
   }
 
   editList(wl: WishList){

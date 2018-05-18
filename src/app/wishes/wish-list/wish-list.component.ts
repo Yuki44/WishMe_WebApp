@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { WishList } from '../../shared/entities/wish-list';
 
 @Component({
   selector: 'app-wish-list',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WishListComponent implements OnInit {
   descriptionVisible: boolean;
+  wishList: WishList;
+
 
   constructor(private route: Router) { }
 
