@@ -1,11 +1,11 @@
-<div fxLayout="column">
-  <mat-card fxFlexFill>
+<div fxLayout="column" fxFlexFill>
+  <mat-card >
     <mat-card-title>Wishlist Name</mat-card-title>
     <mat-card-subtitle>How many wishes (wish quantity) OR Wishlist description</mat-card-subtitle>
     <div *ngFor="let wish of wishes">
 
     <div fxLayout="row">
-      <div class="wish-card">
+      <div class="wish-card" fxFlexFill >
         <div class="card-header">
         <span style="font-size: 30px; padding-left: 2%;">{{wish.name}}</span>
         </div>
@@ -18,7 +18,7 @@
             <div class="row2">
               <bar-rating [readOnly]="true" [rate]="wish.rating" [max]="5" [theme]="'stars'" ></bar-rating>
               <p class="wish-price">Avg. {{wish.price}}</p>
-              <p class="wish-link">Link: {{wish.link}}</p>
+              <p class="wish-link">Link: <a [href]=" 'http://' + wish.link" style="color: #36aadf">{{wish.link}}</a></p>
               <a class="more-btn" (click)="toggleDescription()">More</a>
             </div>
             <div *ngIf="descriptionVisible" style="margin-top: 2%">
