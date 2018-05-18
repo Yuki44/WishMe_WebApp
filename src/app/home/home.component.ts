@@ -9,7 +9,6 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { WishList } from '../shared/entities/wish-list';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
-import { AddWishComponent } from '../wishes/add-wish/add-wish.component';
 import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
 import { filter } from 'rxjs/operators';
 import { EditWishlistComponent } from './edit-wishlist/edit-wishlist.component';
