@@ -1,40 +1,52 @@
-<div fxLayout="column">
-  <mat-card fxFlexFill>
+<div fxLayout="column" fxFlexFill>
+  <mat-card >
     <mat-card-title>Wishlist Name</mat-card-title>
     <mat-card-subtitle>How many wishes (wish quantity) OR Wishlist description</mat-card-subtitle>
+    <div *ngFor="let wish of wishes">
     <div fxLayout="row">
-      <div class="wish-card">
+      <div class="wish-card" fxFlexFill >
         <div class="card-header">
-        <span style="font-size: 30px; padding-left: 2%;">A kitten</span>
+        <span style="font-size: 30px; padding-left: 2%;">{{wish.name}}</span>
         </div>
         <div class="row">
           <div class="wish-image">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzBPScbXaN-3Aj-m8Fhy6U6ALzViX2edDA_Wvotf-HnLDL1hBP"
+            <img [src]="wish.imageUrl"
               class="rounded">
           </div>
           <div class="container">
             <div class="row2">
-              <bar-rating [readOnly]="true" [rate]="3.0" [max]="5" [theme]="'stars'" ></bar-rating>
-              <p class="wish-price">Avg. price: 320 DKK</p>
-              <p class="wish-link">Link: www.google.com</p>
+              <bar-rating [readOnly]="true" [rate]="wish.rating" [max]="5" [theme]="'stars'" ></bar-rating>
+              <p class="wish-price">Avg. {{wish.price}}</p>
+              <p class="wish-link">Link: <a [href]=" 'http://' + wish.link" style="color: #36aadf">{{wish.link}}</a></p>
               <a class="more-btn" (click)="toggleDescription()">More</a>
             </div>
             <div *ngIf="descriptionVisible" style="margin-top: 2%">
-            <span  class="description-text">A gift or a present is an item given to someone without the expectation of payment or return. An item is not a gift if that item is already owned by the one to whom it is given. Although gift-giving might involve an expectation of reciprocity, a gift is meant to be free. In many countries, the act of mutually exchanging money, goods, etc. may sustain social relations and contribute to social cohesion. Economists have elaborated the economics of gift-giving into the notion of a gift economy. By extension the term gift can refer to any item or act of service that makes the other happier or less sad, especially as a favor, including forgiveness and kindness. Gifts are also first and foremost presented on occasions such as birthdays and holidays. </span>
+            <span  class="description-text">{{wish.description}} </span>
           </div>
           </div>
+        </div>
+        <div fxFlexAlign="end">
+          <button mat-icon-button color="warn" (click)="deleteList(wishlist)">
+            <mat-icon >delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="editList(wishlist)">
+            <mat-icon >edit</mat-icon>
+          </button>
         </div>
       </div>
     </div>
     <mat-card-content>
     </mat-card-content>
     <!--<mat-divider></mat-divider>-->
+    </div>
   </mat-card>
 </div>
 
 <div fxLayout="column" class="fab"   >
-  <button (click)="addWish()"  mat-fab
-        >
+  <button (click)="addWish()"  mat-fab>
     <mat-icon style="color: white; padding-left: 2%">add</mat-icon>
   </button>
 </div>
+
+
+
