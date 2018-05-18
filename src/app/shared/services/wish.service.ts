@@ -14,7 +14,6 @@ getWishes(uid: string): Observable<any> {
 
     let ref =  this.afs.collection
     ('wish', ref => ref.where('owner', '==', uid));
-    debugger;
   return ref.snapshotChanges().map( actions => {
     return actions.map( a => {
       const data = a.payload.doc.data() as Wish;
