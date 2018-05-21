@@ -8,14 +8,16 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatDialogModule, MatProgressSpinnerModule, MatSnackBarModule
 } from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
-import { BarRatingModule } from "ngx-bar-rating";
+import { BarRatingModule } from 'ngx-bar-rating';
 import { WishCreateComponent } from './wish-create/wish-create.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { WishDeleteComponent } from './wish-delete/wish-delete.component';
 
 @NgModule({
   imports: [
@@ -31,8 +33,12 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
-  declarations: [ WishListComponent, WishCreateComponent]
+  declarations: [ WishListComponent, WishCreateComponent, WishDeleteComponent],
+  entryComponents: [WishDeleteComponent]
 })
 export class WishesModule { }

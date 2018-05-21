@@ -108,6 +108,7 @@ export class EditProfileComponent implements OnInit {
       const path = 'profile-images/' + this.user.uid;
       this.fileStorageService.upload(path, file).downloadUrl.subscribe(
         url => {
+          debugger;
           this.img = url;
           this.save();
           this.hovering(false);
