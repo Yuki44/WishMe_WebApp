@@ -4,12 +4,14 @@ import {Observable} from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { WishList } from '../entities/wish-list';
 import { FileStorageService } from '../storage/file-storage.service';
+import { UploadTask } from '../storage/upload-task';
 
 @Injectable()
 export class WishService {
 
   constructor(private fileStorageService: FileStorageService,
-              private afs: AngularFirestore) { }
+              private afs: AngularFirestore,
+              private upload: FileStorageService) { }
 
 getWishes(uid: string): Observable<any> {
 
@@ -28,19 +30,31 @@ getWishes(uid: string): Observable<any> {
   });
 }
 
-addWish(){
+getWishWithImageUrl(uid: string): Observable<any> {
+  return this.afs.collection('wish').doc(uid).valueChanges();
 
 
-
-    // TODO
 }
+
+  createWish(wish: Wish, owner: string): Promise<any>{
+    if (wish != null) {
+      console.log("wish in serivce:" + wish);
+      const collection = this.afs.collection<any>('wish');
+      return collection.add({description: wish.description, link: wish.link, name: wish.name, owner: owner, price: wish.price, rating: wish.rating});
+    } else {
+      return new Promise((resolve, reject) => {
+        reject('Value is not a valid');
+      });
+    }
+  }
 
 deleteWish(w: Wish): Promise<any>{
   return this.afs.collection('wish').doc(w.id).delete();
 }
 
-updateWish(){
-  // TODO
+updateWish(w: Wish): Promise<any>{
+  return this.afs.collection('wish').doc(w.id).update({description: w.description, link: w.link, name: w.name, owner: w.owner, price: w.price, rating: w.rating});
+
 }
 
 

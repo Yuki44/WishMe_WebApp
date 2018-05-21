@@ -9,7 +9,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatDialogModule
+  MatDialogModule, MatProgressSpinnerModule, MatSnackBarModule
 } from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import { BarRatingModule } from 'ngx-bar-rating';
@@ -34,7 +34,9 @@ import { WishDeleteComponent } from './wish-delete/wish-delete.component';
     MatFormFieldModule,
     MatInputModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   declarations: [ WishListComponent, WishCreateComponent, WishDeleteComponent],
   entryComponents: [WishDeleteComponent]

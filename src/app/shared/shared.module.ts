@@ -8,6 +8,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { UploadDirective } from './directives/upload.directive';
 import { WishlistService } from './services/wishlist.service';
 import { WishService } from './services/wish.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { WishService } from './services/wish.service';
   providers: [
     FileStorageService,
     WishlistService,
-    WishService
+    WishService,
+    DataService
   ]
 })
 export class SharedModule { }
