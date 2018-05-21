@@ -35,8 +35,8 @@ addWish(){
     // TODO
 }
 
-deleteWish(){
-  // TODO
+deleteWish(w: Wish): Promise<any>{
+  return this.afs.collection('wish').doc(w.id).delete();
 }
 
 updateWish(){
