@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent},
   { path: 'wishes/:id', component: WishListComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'createwish', component: WishCreateComponent}
+  { path: 'wish', component: WishCreateComponent}
 ];
 
 @NgModule({

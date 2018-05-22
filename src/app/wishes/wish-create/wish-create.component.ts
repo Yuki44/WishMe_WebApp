@@ -53,13 +53,16 @@ img: String;
   }
 
   ngOnInit() {
+    debugger;
     this.data.currentMessage.subscribe(message => this.message = message);
     console.log('message :' + this.message);
     this.wishSub = this.wishService.getWishWithImageUrl(this.message).subscribe(wish => {
-      this.wish = wish,
+      this.wish = wish;
+      if(this.wish.imageUrl == null){
+        this.wish.imageUrl = 'assets/giftdefault.jpg';
+      }
         this.newWishForm.patchValue(this.wish);
     });
-    this.img = 'assets/giftdefault.jpg';
 
   }
   addWish(){
@@ -90,15 +93,17 @@ img: String;
       console.log(fileList.item(0));
       const file = fileList.item(0);
       const path = 'wish-images/' + this.message;
-      this.fileStorageService.upload(path, file).downloadUrl.subscribe(
+      this.fileStorageService.upload(path, file).subscribe(
         url => {
-          debugger;
-          this.img = url;
+
+          this.wish.imageUrl = url;
+          console.log("okay :" + url);
           this.hovering(false);
           console.log("upload complete");
           this.srcLoaded = true;
-        }
-      );
+
+
+        });
     } else {
       console.log('wrong: ');
       this.snack.open('You need to drop a single png or jpeg image', null, {
