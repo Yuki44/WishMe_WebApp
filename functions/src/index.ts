@@ -1,9 +1,9 @@
-import * as functions from 'firebase-functions';
-import {document} from 'firebase-functions/lib/providers/firestore';
-import {Wish} from '../../src/app/shared/entities/wish';
-import {object} from 'firebase-functions/lib/providers/storage';
-import {firestore} from 'firebase-admin';
-import {forEach} from '@angular/router/src/utils/collection';
+'use strict';
+
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
+
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -14,13 +14,19 @@ import {forEach} from '@angular/router/src/utils/collection';
 exports.deletedWishlist = functions.firestore
   .document('wishlist/{id}')
   .onDelete((snap, context) => {
-    // Get an object representing the document prior to deletion
-    // e.g. {'name': 'Marie', 'age': 66}
+
+
     const deletedValue = snap.data();
-    const wishlistId = deletedValue.id;
-    // perform desired operations ...
-const wish = document('wish');
-    
+    console.log("Deleted wishlist's ID: " + deletedValue.id );
+
+ admin.firestore().collection('wish').where('owner', '==', "igaXZSdnlp2pHqwm203h").get().then(
+      result =>  {
+        console.log("Checking for the retrieved test wish: ", JSON.stringify(result));
+      });
+    // const wishlistId = deletedValue.id;
+
+// const wish = document('wish');
+
 
   });
 

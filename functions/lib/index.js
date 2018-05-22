@@ -1,6 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const functions = require("firebase-functions");
+'use strict';
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -10,10 +11,12 @@ const functions = require("firebase-functions");
 exports.deletedWishlist = functions.firestore
     .document('wishlist/{id}')
     .onDelete((snap, context) => {
-    // Get an object representing the document prior to deletion
-    console.log('A wishlist got deleted');
-    // e.g. {'name': 'Marie', 'age': 66}
     const deletedValue = snap.data();
-    // perform desired operations ...
+    console.log("Deleted: " + deletedValue.id + " " + context);
+    admin.firestore().collection('wish').where('owner', '==', "igaXZSdnlp2pHqwm203h").get().then(result => {
+        console.log("Checking for the retrieved test wish: ", JSON.stringify(result));
+    });
+    // const wishlistId = deletedValue.id;
+    // const wish = document('wish');
 });
 //# sourceMappingURL=index.js.map

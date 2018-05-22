@@ -1,43 +1,41 @@
 <div fxLayout="column" fxFlexFill>
   <mat-card >
-    <mat-card-title>Wishlist Name</mat-card-title>
-    <mat-card-subtitle>How many wishes (wish quantity) OR Wishlist description</mat-card-subtitle>
     <div *ngFor="let wish of wishes">
-    <div fxLayout="row">
-      <div class="wish-card" fxFlexFill >
-        <div class="card-header">
-        <span style="font-size: 30px; padding-left: 2%;">{{wish.name}}</span>
-        </div>
-        <div class="row">
-          <div class="wish-image">
-            <img [src]="wish.imageUrl"
-              class="rounded">
+      <div fxLayout="row">
+        <div class="wish-card" fxFlexFill >
+          <div class="card-header">
+            <span style="font-size: 30px; padding-left: 2%;">{{wish.name}}</span>
           </div>
-          <div class="container">
-            <div class="row2">
-              <bar-rating [readOnly]="true" [rate]="wish.rating" [max]="5" [theme]="'stars'" ></bar-rating>
-              <p class="wish-price">Avg. {{wish.price}}</p>
-              <p class="wish-link">Link: <a [href]=" 'http://' + wish.link" style="color: #36aadf">{{wish.link}}</a></p>
-              <a class="more-btn" (click)="toggleDescription()">More</a>
+          <div class="row">
+            <div class="wish-image">
+              <img [src]="wish.imageUrl"
+                   class="rounded">
             </div>
-            <div *ngIf="descriptionVisible" style="margin-top: 2%">
-            <span  class="description-text">{{wish.description}} </span>
+            <div class="container">
+              <div class="row2">
+                <bar-rating [readOnly]="true" [rate]="wish?.rating" [max]="5" [theme]="'stars'" ></bar-rating>
+                <p class="wish-price">Avg. {{wish.price}}</p>
+                <p class="wish-link">Link: <a [href]=" 'http://' + wish.link" style="color: #36aadf">{{wish.link}}</a></p>
+                <a class="more-btn" (click)="toggleDescription()">More</a>
+              </div>
+              <div *ngIf="descriptionVisible" style="margin-top: 2%">
+                <span  class="description-text">{{wish.description}} </span>
+              </div>
+            </div>
           </div>
+          <div fxLayoutAlign="end">
+            <button mat-icon-button color="warn" (click)="deleteWish(wish)">
+              <mat-icon >delete</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="editWish(wish)">
+              <mat-icon >edit</mat-icon>
+            </button>
           </div>
-        </div>
-        <div fxLayoutAlign="end">
-          <button mat-icon-button color="warn" (click)="deleteWish(wish)">
-            <mat-icon >delete</mat-icon>
-          </button>
-          <button mat-icon-button color="accent" (click)="editWish(wish)">
-            <mat-icon >edit</mat-icon>
-          </button>
         </div>
       </div>
-    </div>
-    <mat-card-content>
-    </mat-card-content>
-    <!--<mat-divider></mat-divider>-->
+      <mat-card-content>
+      </mat-card-content>
+      <!--<mat-divider></mat-divider>-->
     </div>
   </mat-card>
 </div>
@@ -47,6 +45,3 @@
     <mat-icon style="color: white; padding-left: 2%">add</mat-icon>
   </button>
 </div>
-
-
-
