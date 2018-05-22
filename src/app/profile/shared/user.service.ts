@@ -58,6 +58,7 @@ getUser(): Observable<User> {
   }
 
   createUserProfile(user: User): Promise<any> {
+    //
     return new Promise((resolve, reject) => {
       this.authService
       .getAuthUser()
