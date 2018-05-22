@@ -4,7 +4,6 @@
     <mat-card-header>
       <div class="center">
         <img style="width:125px;height:125px;"
-
              [hidden]="!srcLoaded"
              matTooltipPosition = "below"
              matTooltip="Drop new image here or click to browse picture"
@@ -12,15 +11,13 @@
              appUpload
              (hovering)="hovering($event)"
              (dropped)="uploadNewImage($event)"
-             mat-card-avatar
-             [src]="isHovering ? '/assets/ic_cloud_upload_black_48px.svg' : img"
+             [src]="isHovering ? '/assets/ic_cloud_upload_black_48px.svg' : wish?.imageUrl"
              (load)="srcLoaded = true">
         <mat-spinner
           mat-card-avatar
           diameter="100"
           *ngIf="!srcLoaded"></mat-spinner>
       </div>
-      <mat-card-title>Add wish</mat-card-title>
     </mat-card-header>
     <mat-card-content>
 <form (ngSubmit)="addWish()" [formGroup]="newWishForm" fxLayout="column" novalidate>
@@ -36,10 +33,10 @@
   <mat-form-field fxFlex>
 <input matInput placeholder="Short description:" formControlName="description">
 </mat-form-field>
-  <bar-rating [formControlName]="rating" fxFlexAlign="center" [readOnly]="false" [rate]="1.0" [max]="5" [theme]="'stars'" ></bar-rating>
+  <bar-rating fxFlexAlign="center" [readOnly]="false" [rate]="wish?.rating" [max]="5" [theme]="'stars'" ></bar-rating>
   <button mat-icon-button
           type="submit" fxFlexAlign="end">
-    <mat-icon  >save</mat-icon>
+    <mat-icon color="accent"  >save</mat-icon>
 
   </button>
 </form>
