@@ -1,61 +1,98 @@
 <br>
-<div fxLayout="row" fxLayoutAlign="center">
+<div fxLayout="row" fxLayoutAlign="center" *ngIf='userCreated==false'>
+
+  <mat-card fxFlex="50">
+
+    <mat-card-header>
+      <mat-card-title>
+        <h2>
+          <b>Signup</b>
+        </h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="signup()" [formGroup]="signupForm" novalidate fxLayout="column">
+        <mat-form-field fxFlex style="transform: perspective(1px)">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="formControllError('email', 'required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="formControllError('email', 'email', ['required'])">
+            Email is invalid
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Password" type="password" formControlName="password">
+          <mat-error *ngIf="formControllError('password', 'required')">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="formControllError('password', 'minLength', ['required'])">
+            Password has to consist of at least 6 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Repeat Password" type="password" formControlName="repeatedPass">
+          <mat-error *ngIf="formControllError('repeatedPass', 'required')">
+            Rrepeated password is required
+          </mat-error>
+          <mat-error *ngIf="formControllError('repeatedPass', 'not-matching-pass', ['required'])">
+            Rrepeated password does not match
+          </mat-error>
+        </mat-form-field>
+        <button mat-button color="primary" type="submit" [disabled]="signupForm.invalid">
+          Sign up
+        </button>
+      </form>
+    </mat-card-content>
+
+
+
+
+  </mat-card>
+
+</div>
+
+
+<div *ngIf='userCreated==true'>
+  <div fxLayout="row" fxLayoutAlign="center">
+
     <mat-card fxFlex="50">
-        <mat-card-header>
-          <mat-card-title><h2><b>Signup</b></h2></mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-        <form (ngSubmit)="signup()"
-              [formGroup]="signupForm"
-              novalidate
-              fxLayout="column">
-          <mat-form-field fxFlex style="transform: perspective(1px)">
-            <input matInput
-                   placeholder="Email"
-                   formControlName="email">
-                   <mat-error *ngIf="formControllError('email', 'required')">
-                      Email is required
-                    </mat-error>
-                    <mat-error *ngIf="formControllError('email', 'email', ['required'])">
-                      Email is invalid
-                    </mat-error>
-          </mat-form-field>
-          <br>
+      <mat-card-header>
+        <div class="center">
+          <img style="width:125px;height:125px;" [hidden]="!srcLoaded" matTooltipPosition="below" matTooltip="Drop new image here or click to browse picture"
+            [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'" appUpload (hovering)="hovering($event)" (dropped)="uploadNewImage($event)"
+            mat-card-avatar [src]="isHovering ? '/assets/ic_cloud_upload_black_48px.svg' : profileImgUrl" (load)="srcLoaded = true">
+          <mat-spinner mat-card-avatar diameter="100" *ngIf="!srcLoaded"></mat-spinner>
+        </div>
+
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="save()" [formGroup]="profileForm" novalidate fxLayout="column">
           <mat-form-field fxFlex>
-            <input matInput
-                   placeholder="Password"
-                   type="password"
-                   formControlName="password">
-                   <mat-error *ngIf="formControllError('password', 'required')">
-                    Password is required
-                  </mat-error>
-                  <mat-error *ngIf="formControllError('password', 'minLength', ['required'])">
-                    Password has to consist of at least 6 characters
-                  </mat-error>
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="fcErr('name', 'required')">
+              name is required
+            </mat-error>
+            <mat-error *ngIf="fcErr('name', 'minlength', ['required'])">
+              Name needs to be at least 2 characters
+            </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex>
-            <input matInput
-                   placeholder="Repeat Password"
-                   type="password"
-                   formControlName="repeatedPass">
-                   <mat-error *ngIf="formControllError('repeatedPass', 'required')">
-                    Rrepeated password is required
-                  </mat-error>
-                  <mat-error *ngIf="formControllError('repeatedPass', 'not-matching-pass', ['required'])">
-                    Rrepeated password does not match
-                  </mat-error>
+            <input matInput placeholder="Contact email" formControlName="contactEmail">
           </mat-form-field>
-          <button mat-button
-                  color="primary"
-                  type="submit"
-                  [disabled]="signupForm.invalid">
-            Sign up
-          </button>
-          <br>
-          <button mat-button class="special" type="button" routerLink="/login">
-            Login
-          </button>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Address" formControlName="address">
+          </mat-form-field>
+          <div fxLayout="row" fx-flex fxFlexAlign="end">
+            <button mat-fab color="primary" type="submit" [disabled]="profileForm.invalid || unchanger()">
+              <mat-icon style="color:white">save</mat-icon>
+            </button>
+          </div>
         </form>
       </mat-card-content>
     </mat-card>
+
   </div>
+
+</div>

@@ -1,16 +1,19 @@
+import { User } from './../../shared/entities/user';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Injectable } from '@angular/core';
+import { Injectable, Directive } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../shared/entities/user';
 
 @Injectable()
 export class AuthService {
+  public authUserUid: string;
+  aa: string;
 
-  constructor(private fireAuth: AngularFireAuth) { }
+  constructor(private fireAuth: AngularFireAuth) {}
 
-  public login (email: string, password: string): Promise<any> {
+  login(email: string, password: string): Promise<any> {
     return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(
-      email, password
+      email,
+      password
     );
   }
 
@@ -19,29 +22,33 @@ export class AuthService {
   }
 
   signup(user: User): Promise<any> {
-    //
-    return this.fireAuth.auth.createUserWithEmailAndPassword(
+    return this.fireAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(
       user.email,
       user.password
     );
-
- }
+  }
 
   isAuthenticated(): Observable<boolean> {
-    return this.fireAuth.authState
-      .map(authState => {
-        return authState !== null;
-      });
+    return this.fireAuth.authState.map(authState => {
+      return authState !== null;
+    });
   }
 
   getAuthUser(): Observable<User> {
-    return this.fireAuth.authState
-      .map(authState => {
-        if (!authState) {
-          return null;
-        }
-        console.log('USER ID   :' + authState.uid);
-        return {email: authState.email, uid: authState.uid };
-      });
+    return this.fireAuth.authState.map(authState => {
+      if (!authState) {
+        return null;
+      }
+      console.log('auth.service/getAuthUser(): ' + authState.uid);
+      return { email: authState.email, uid: authState.uid };
+    });
   }
+
+  getAuthUserUid(): void {
+    this.fireAuth.authState.subscribe(authUser => {
+      this.authUserUid = authUser.uid;
+    });
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@: ' + this.authUserUid);
+  }
+
 }

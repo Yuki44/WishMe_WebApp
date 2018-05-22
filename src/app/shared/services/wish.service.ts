@@ -10,7 +10,8 @@ import { UploadTask } from '../storage/upload-task';
 export class WishService {
 
   constructor(private fileStorageService: FileStorageService,
-              private afs: AngularFirestore) { }
+              private afs: AngularFirestore,
+              private upload: FileStorageService) { }
 
 getWishes(uid: string): Observable<any> {
 
@@ -24,27 +25,13 @@ getWishes(uid: string): Observable<any> {
         data.imageUrl = url ;
         console.log(data);
       } );
-      if(data.imageUrl == null){
-        data.imageUrl = 'assets/giftdefault.jpg';
-      }
       return data;
     })
   });
 }
 
 getWishWithImageUrl(uid: string): Observable<any> {
-  return this.afs.collection('wish').doc(uid).snapshotChanges().map(actions => {
-    const data = actions.payload.data() as Wish;
-    this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
-      data.imageUrl = url;
-
-    });
-    if(data.imageUrl == null){
-      data.imageUrl = 'assets/giftdefault.jpg';
-    }
-    return data;
-  });
-
+  return this.afs.collection('wish').doc(uid).valueChanges();
 
 
 }
