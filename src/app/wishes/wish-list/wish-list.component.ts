@@ -15,6 +15,9 @@ import { WishlistService } from '../../shared/services/wishlist.service';
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.scss']
+
+  
+
 })
 export class WishListComponent implements OnInit {
   descriptionVisible: boolean;
