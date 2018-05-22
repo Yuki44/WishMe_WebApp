@@ -1,10 +1,13 @@
+import { User } from './../../shared/entities/user';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Injectable } from '@angular/core';
+import { Injectable, Directive } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../shared/entities/user';
 
 @Injectable()
 export class AuthService {
+  public authUserUid: string;
+  aa: string;
+
   constructor(private fireAuth: AngularFireAuth) {}
 
   login(email: string, password: string): Promise<any> {
@@ -36,9 +39,16 @@ export class AuthService {
       if (!authState) {
         return null;
       }
-      console.log('USER ID   :' + authState.uid);
+      console.log('auth.service/getAuthUser(): ' + authState.uid);
       return { email: authState.email, uid: authState.uid };
     });
+  }
+
+  getAuthUserUid(): void {
+    this.fireAuth.authState.subscribe(authUser => {
+      this.authUserUid = authUser.uid;
+    });
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@: ' + this.authUserUid);
   }
 
 }

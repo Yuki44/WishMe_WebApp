@@ -12,7 +12,7 @@ export class UserService {
   constructor(private authService: AuthService,
               private fileStorageService: FileStorageService,
               private angularFireStore: AngularFirestore) {
-              angularFireStore.firestore.settings({ timestampsInSnapshots: true });
+             // angularFireStore.firestore.settings({ timestampsInSnapshots: true });
               }
 
 documentReference: AngularFirestoreDocument<User>;
@@ -20,7 +20,7 @@ documentReference: AngularFirestoreDocument<User>;
 getUser(): Observable<User> {
     return this.authService
     .getAuthUser()
-     .first()
+    // .first()
       .switchMap(authUser => {
         if (!authUser) {
           return new EmptyObservable();
@@ -57,8 +57,32 @@ getUser(): Observable<User> {
       });
   }
 
+  createUserProfile(user: User): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.authService
+      .getAuthUser()
+    //  .first()
+      .subscribe(authUser => {
+        if (authUser && user != null) {
+          const coll = this.angularFireStore.collection<User>('users').doc(authUser.uid);
+          console.log('user.service/createUserProfile()  authUserUid: ' + authUser.uid);
+          coll.set({
+            address: user.address,
+            contactEmail: user.contactEmail,
+            name: user.name,
+            uid: authUser.uid
+          }).then(resolve).catch(reject);
+      } else {
+          reject('User == null / no AuthUser');
+      }
+    });
+  });
+}
+
   updateUser(user: User): Promise<any> {
+    console.log('user.service/updateUser() ' + user.uid);
     return this.angularFireStore.doc('users/' + user.uid).set(user);
   }
+
 
 }

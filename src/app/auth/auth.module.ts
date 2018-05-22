@@ -9,7 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule,
+  MatIconModule, MatSpinner, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SignupComponent } from './signup/signup.component';
@@ -26,7 +27,15 @@ import { SignupComponent } from './signup/signup.component';
     ReactiveFormsModule,
     FormsModule,
     MatSnackBarModule,
-    ProfileModule
+    ProfileModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   declarations: [LoginComponent, SignupComponent],
   exports: [ MatButtonModule, MatCardModule, FlexLayoutModule ],
