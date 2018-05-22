@@ -8,18 +8,19 @@ export class FileStorageService {
 
   constructor(private afso: AngularFireStorage) { }
 
-  upload(path: string, file: File): Observable<any> {
+  upload(path: string, file: File): UploadTask {
     const fileRef = this.afso.ref(path) // Add this line to get the path as a ref
-   return this.afso.upload(path, file).downloadURL();
+    const task = this.afso.upload(path, file);
+    return {downloadUrl: fileRef.getDownloadURL()};
   }
 
 
   downloadUrlProfile(uid: string): Observable<any> {
     return this.afso.ref('profile-images/' + uid).getDownloadURL();
-
   }
   downloadUrlWish(uid: string): Observable<any> {
-   return this.afso.ref('wish-images/' + uid).getDownloadURL();
+    return this.afso.ref('wish-images/' + uid).getDownloadURL();
+
   }
 
 
