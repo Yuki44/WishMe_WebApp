@@ -15,7 +15,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './shared/user.service';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
-import { AddProfileComponent } from './add-profile/add-profile.component';
 
 @NgModule({
   imports: [
@@ -36,8 +35,8 @@ import { AddProfileComponent } from './add-profile/add-profile.component';
     SharedModule
 
   ],
-  declarations: [EditProfileComponent, ProfileComponent, AddProfileComponent],
-  exports: [ProfileComponent, AddProfileComponent],
+  declarations: [EditProfileComponent, ProfileComponent],
+  exports: [ProfileComponent],
   providers: [
     UserService
   ]
