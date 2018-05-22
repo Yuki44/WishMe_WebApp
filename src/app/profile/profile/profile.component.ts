@@ -28,8 +28,8 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  edit(){
-    this.route.navigateByUrl("/editprofile");
+  edit() {
+    this.route.navigateByUrl('/editprofile');
   }
 
 }

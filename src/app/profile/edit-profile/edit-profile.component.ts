@@ -54,17 +54,18 @@ export class EditProfileComponent implements OnInit {
         this.profileForm.patchValue(user);
       });
   }
+  /*
   ngOnDestroy() {
     console.log("user: ");
     this.userSub.unsubscribe();
   }
-
+*/
   save() {
     const model = this.profileForm.value as User;
     model.uid = this.user.uid;
     this.userService.updateUser(model)
       .then(() => {
-        this.route.navigateByUrl("/home");
+        this.route.navigateByUrl('/home');
         this.snack.open('user saved', null, {
           duration: 2000
         });
@@ -99,15 +100,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   uploadNewImage(fileList) {
-    console.log("upload new image");
+    console.log('upload new image');
     if (fileList && fileList.length === 1 &&
       ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
       this.srcLoaded = false;
       console.log(fileList.item(0));
       const file = fileList.item(0);
       const path = 'profile-images/' + this.user.uid;
-      this.fileStorageService.upload(path, file).subscribe(
+      this.fileStorageService.upload(path, file).downloadUrl.subscribe(
         url => {
+          debugger;
           this.img = url;
           this.save();
           this.hovering(false);
