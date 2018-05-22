@@ -10,31 +10,44 @@ import { UploadTask } from '../storage/upload-task';
 export class WishService {
 
   constructor(private fileStorageService: FileStorageService,
-              private afs: AngularFirestore,
-              private upload: FileStorageService) { }
+              private afs: AngularFirestore) { }
 
-getWishes(uid: string): Observable<any> {
+  getWishes(uid: string): Observable<any> {
 
     let ref =  this.afs.collection
     ('wish', ref => ref.where('owner', '==', uid));
-  return ref.snapshotChanges().map( actions => {
-    return actions.map( a => {
-      const data = a.payload.doc.data() as Wish;
-      data.id = a.payload.doc.id;
-      this.fileStorageService.downloadUrlWish(data.id).subscribe(url =>{
-        data.imageUrl = url ;
-        console.log(data);
-      } );
+    return ref.snapshotChanges().map( actions => {
+      return actions.map( a => {
+        const data = a.payload.doc.data() as Wish;
+        data.id = a.payload.doc.id;
+        this.fileStorageService.downloadUrlWish(data.id).subscribe(url =>{
+          data.imageUrl = url ;
+          console.log(data);
+        } );
+        if(data.imageUrl == null){
+          data.imageUrl = 'assets/giftdefault.jpg';
+        }
+        return data;
+      })
+    });
+  }
+
+  getWishWithImageUrl(uid: string): Observable<any> {
+    return this.afs.collection('wish').doc(uid).snapshotChanges().map(actions => {
+      const data = actions.payload.data() as Wish;
+      this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
+        data.imageUrl = url;
+
+      });
+      if(data.imageUrl == null){
+        data.imageUrl = 'assets/giftdefault.jpg';
+      }
       return data;
-    })
-  });
-}
-
-getWishWithImageUrl(uid: string): Observable<any> {
-  return this.afs.collection('wish').doc(uid).valueChanges();
+    });
 
 
-}
+
+  }
 
   createWish(wish: Wish, owner: string): Promise<any>{
     if (wish != null) {
@@ -48,14 +61,14 @@ getWishWithImageUrl(uid: string): Observable<any> {
     }
   }
 
-deleteWish(w: Wish): Promise<any>{
-  return this.afs.collection('wish').doc(w.id).delete();
-}
+  deleteWish(w: Wish): Promise<any>{
+    return this.afs.collection('wish').doc(w.id).delete();
+  }
 
-updateWish(w: Wish): Promise<any>{
-  return this.afs.collection('wish').doc(w.id).update({description: w.description, link: w.link, name: w.name, owner: w.owner, price: w.price, rating: w.rating});
+  updateWish(w: Wish): Promise<any>{
+    return this.afs.collection('wish').doc(w.id).update({description: w.description, link: w.link, name: w.name, owner: w.owner, price: w.price, rating: w.rating});
 
-}
+  }
 
 
 
