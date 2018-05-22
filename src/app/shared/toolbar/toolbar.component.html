@@ -11,13 +11,14 @@
       </h1>
         </button>
       </span>
-      <div *ngIf="isLoggedIn != true">
-        <button mat-icon-button (click)="login()" disableRipple="true"><h1 style="color: white">Login</h1></button>
+      <div style="padding: 15px">
+        <div *ngIf="isLoggedIn != true">
+          <button mat-icon-button (click)="login()" disableRipple="true"><h1 style="color: white">Login</h1></button>
+        </div>
+        <div *ngIf="isLoggedIn == true">
+          <button mat-icon-button (click)="logout()" disableRipple="true"><h1 style="color: white">Logout</h1></button>
+        </div>
       </div>
-      <div *ngIf="isLoggedIn == true">
-        <button mat-icon-button (click)="logout()" disableRipple="true"><h1 style="color: white">Logout</h1></button>
-      </div>
-
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
