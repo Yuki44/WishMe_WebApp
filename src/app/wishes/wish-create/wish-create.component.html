@@ -33,13 +33,14 @@
         <mat-form-field fxFlex>
           <input matInput placeholder="Short description:" formControlName="description">
         </mat-form-field>
-        <bar-rating fxFlexAlign="center" [readOnly]="false" [rate]="wish?.rating" [max]="5" [theme]="'stars'" ></bar-rating>
+        <bar-rating fxFlexAlign="center" [formControlName]="rating" [(ngModel)]="rating" [max]="5" [theme]="'stars'"></bar-rating>
         <button mat-icon-button
                 type="submit" fxFlexAlign="end">
           <mat-icon color="accent"  >save</mat-icon>
 
         </button>
       </form>
+
     </mat-card-content>
   </mat-card>
 </div>

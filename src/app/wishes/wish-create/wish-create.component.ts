@@ -48,7 +48,7 @@ export class WishCreateComponent implements OnInit {
       price: '',
       link: '',
       description: '',
-      rating: ''
+      rating: 0
     });
   }
 
