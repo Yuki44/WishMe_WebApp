@@ -26,9 +26,9 @@ import { FileStorageService } from '../../shared/storage/file-storage.service';
 })
 
 export class WishCreateComponent implements OnInit {
-newWishForm: FormGroup;
-rating: number;
-img: String;
+  newWishForm: FormGroup;
+  rating: number;
+  img: String;
   isHovering: boolean;
   srcLoaded: boolean;
   message: string;
@@ -53,13 +53,16 @@ img: String;
   }
 
   ngOnInit() {
+    debugger;
     this.data.currentMessage.subscribe(message => this.message = message);
     console.log('message :' + this.message);
     this.wishSub = this.wishService.getWishWithImageUrl(this.message).subscribe(wish => {
-      this.wish = wish,
-        this.newWishForm.patchValue(this.wish);
+      this.wish = wish;
+      if(this.wish.imageUrl == null){
+        this.wish.imageUrl = 'assets/giftdefault.jpg';
+      }
+      this.newWishForm.patchValue(this.wish);
     });
-    this.img = 'assets/giftdefault.jpg';
 
   }
   addWish(){
@@ -68,7 +71,7 @@ img: String;
     model.owner = this.wish.owner;
     this.wishService.updateWish(model)
       .then(() => {
-       this.route.navigateByUrl("/wishes/" + this.wish.owner);
+        this.route.navigateByUrl("/wishes/" + this.wish.owner);
         this.snack.open('wish saved', null, {
           duration: 2000
         });
@@ -90,15 +93,17 @@ img: String;
       console.log(fileList.item(0));
       const file = fileList.item(0);
       const path = 'wish-images/' + this.message;
-      this.fileStorageService.upload(path, file).downloadUrl.subscribe(
+      this.fileStorageService.upload(path, file).subscribe(
         url => {
-          debugger;
-          this.img = url;
+
+          this.wish.imageUrl = url;
+          console.log("okay :" + url);
           this.hovering(false);
           console.log("upload complete");
           this.srcLoaded = true;
-        }
-      );
+
+
+        });
     } else {
       console.log('wrong: ');
       this.snack.open('You need to drop a single png or jpeg image', null, {
