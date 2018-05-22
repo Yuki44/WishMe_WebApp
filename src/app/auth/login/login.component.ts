@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     const loginModel = this.loginForm.value;
     this.authService .login(loginModel.email, loginModel.password)
     .then(() => {
-      this.route.navigateByUrl('/home');
+      this.route.navigateByUrl("/home");
       this.snack.open('Logged in!', null, {
         duration: 4000
       });
@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
       this.snack.open(error, null, {
         duration: 4000
       });
-    });
+    })
 }
-  signUp() {
-    this.route.navigateByUrl('/signup');
+  signUp(){
+    this.route.navigateByUrl("/signup");
   }
 
 }

@@ -9,6 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteWishlistComponent } from '../../home/delete-wishlist/delete-wishlist.component';
 import { filter } from 'rxjs/operators';
 import { DataService } from '../../shared/services/data.service';
+import { WishlistService } from '../../shared/services/wishlist.service';
 
 @Component({
   selector: 'app-wish-list',
@@ -17,11 +18,9 @@ import { DataService } from '../../shared/services/data.service';
 })
 export class WishListComponent implements OnInit {
   descriptionVisible: boolean;
-  wishList: WishList;
   wishes: Wish[];
   wish: Wish;
   deleteWishRef: MatDialogRef<WishDeleteComponent>;
-  parentMessage: string;
 
 
 
@@ -45,11 +44,13 @@ export class WishListComponent implements OnInit {
     this.aRoute.paramMap
       .switchMap(params => this.wishService.getWishes(params.get('id')))
       .subscribe(wishes => this.wishes = wishes);
- /*   this.aRoute.paramMap
-      .switchMap(params => this.parentMessage = params.get('id')).subscribe(data => this.data.changeMessage(this.parentMessage));
-*/
   }
 
+  editWish(wish: Wish) {
+    this.data.changeMessage(wish.id);
+    this.route.navigateByUrl('/wish');
+
+  }
 
   addWish() {
     this.wish = new Wish();
@@ -61,7 +62,7 @@ export class WishListComponent implements OnInit {
      this.wish.imageUrl = 'assets/giftdefault.jpg';
     this.aRoute.paramMap
       .switchMap(params => this.wishService.createWish(this.wish,params.get('id'))).map(wish => this.data.changeMessage(wish.id))
-      .subscribe(wish =>  this.route.navigateByUrl('/createwish'));
+      .subscribe(wish =>  this.route.navigateByUrl('/wish'));
 
   }
 
