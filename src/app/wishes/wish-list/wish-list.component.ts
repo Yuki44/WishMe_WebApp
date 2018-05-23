@@ -16,12 +16,13 @@ import { WishlistService } from '../../shared/services/wishlist.service';
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.scss']
 
-  
+
 
 })
 export class WishListComponent implements OnInit {
   descriptionVisible: boolean;
   wishes: Wish[];
+  wishList: WishList;
   wish: Wish;
   deleteWishRef: MatDialogRef<WishDeleteComponent>;
 
@@ -30,6 +31,7 @@ export class WishListComponent implements OnInit {
   constructor(private route: Router,
               private aRoute: ActivatedRoute,
               private wishService: WishService,
+              private listService: WishlistService,
               private dialog: MatDialog,
               private data: DataService) {
 
@@ -47,6 +49,10 @@ export class WishListComponent implements OnInit {
     this.aRoute.paramMap
       .switchMap(params => this.wishService.getWishes(params.get('id')))
       .subscribe(wishes => this.wishes = wishes);
+    this.aRoute.paramMap.switchMap(params => this.listService.getOneWishlist(params.get('id'))).
+      subscribe(list => {
+    this.wishList = list;
+    });
   }
 
   editWish(wish: Wish) {
