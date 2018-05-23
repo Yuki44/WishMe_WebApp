@@ -6,7 +6,6 @@ import { WishService } from '../../shared/services/wish.service';
 import 'rxjs/operator/switchMap';
 import { WishDeleteComponent } from '../wish-delete/wish-delete.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { DeleteWishlistComponent } from '../../home/delete-wishlist/delete-wishlist.component';
 import { filter } from 'rxjs/operators';
 import { DataService } from '../../shared/services/data.service';
 import { WishlistService } from '../../shared/services/wishlist.service';
@@ -25,6 +24,7 @@ export class WishListComponent implements OnInit {
   wishList: WishList;
   wish: Wish;
   deleteWishRef: MatDialogRef<WishDeleteComponent>;
+  cursor = 3;
 
 
 
@@ -46,13 +46,24 @@ export class WishListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.aRoute.paramMap
-      .switchMap(params => this.wishService.getWishes(params.get('id')))
-      .subscribe(wishes => this.wishes = wishes);
+   this.aRoute.paramMap
+      .switchMap(params => this.wishService.getWishes(params.get('id'), this.cursor))
+      .subscribe(wishes => {this.wishes = wishes,
+      this.cursor = 3});
     this.aRoute.paramMap.switchMap(params => this.listService.getOneWishlist(params.get('id'))).
       subscribe(list => {
     this.wishList = list;
     });
+  }
+
+  scrollHandler(e) {
+    if(e === 'bottom') {
+    // this.wishes.length = 0;
+     this.cursor = this.cursor +3;
+      this.aRoute.paramMap
+        .switchMap(params => this.wishService.getWishes(params.get('id'), this.cursor))
+        .subscribe(wishes => this.wishes = wishes);
+    }
   }
 
   editWish(wish: Wish) {

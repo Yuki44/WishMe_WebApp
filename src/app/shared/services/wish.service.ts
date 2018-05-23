@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Wish } from '../entities/wish';
 import {Observable} from 'rxjs/Observable';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { WishList } from '../entities/wish-list';
 import { FileStorageService } from '../storage/file-storage.service';
 import { UploadTask } from '../storage/upload-task';
@@ -12,10 +12,10 @@ export class WishService {
   constructor(private fileStorageService: FileStorageService,
               private afs: AngularFirestore) { }
 
-  getWishes(uid: string): Observable<any> {
+  getWishes(uid: string, limit: number): Observable<any> {
 
     let ref =  this.afs.collection
-    ('wish', ref => ref.where('owner', '==', uid));
+    ('wish', ref => ref.where('owner', '==', uid).limit(limit));
     return ref.snapshotChanges().map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data() as Wish;
@@ -79,7 +79,5 @@ export class WishService {
     return this.afs.collection('wish').doc(w.id).update({description: w.description, link: w.link, name: w.name, owner: w.owner, price: w.price, rating: w.rating});
 
   }
-
-
 
 }
