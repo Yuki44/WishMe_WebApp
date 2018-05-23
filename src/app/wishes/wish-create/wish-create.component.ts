@@ -58,9 +58,6 @@ export class WishCreateComponent implements OnInit {
     this.wishSub = this.wishService.getWishWithImageUrl(this.message).subscribe(wish => {
       this.wish = wish;
       this.rate = wish.rating;
-      if(this.wish.imageUrl == null){
-        this.wish.imageUrl = 'assets/giftdefault.jpg';
-      }
       this.newWishForm.patchValue(this.wish);
     });
 
