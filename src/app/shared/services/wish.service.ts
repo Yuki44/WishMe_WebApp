@@ -20,10 +20,15 @@ export class WishService {
       return actions.map( a => {
         const data = a.payload.doc.data() as Wish;
         data.id = a.payload.doc.id;
-        this.fileStorageService.downloadUrlWish(data.id).subscribe(url =>{
-          data.imageUrl = url ;
-          console.log(data);
-        } );
+        try {
+          this.fileStorageService.downloadUrlWish(data.id).subscribe(url =>{
+            data.imageUrl = url ;
+            console.log(data);
+          });
+        } catch {
+          console.log("something went wrong");
+        }
+
         if(data.imageUrl == null){
           data.imageUrl = 'assets/giftdefault.jpg';
         }
@@ -35,9 +40,14 @@ export class WishService {
   getWishWithImageUrl(uid: string): Observable<any> {
     return this.afs.collection('wish').doc(uid).snapshotChanges().map(actions => {
       const data = actions.payload.data() as Wish;
-      this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
-        data.imageUrl = url;
-      });
+      try {
+        this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
+          data.imageUrl = url;
+        });
+      } catch {
+        console.log("something went wrong");
+      }
+
       if(data.imageUrl == null){
         data.imageUrl = 'assets/giftdefault.jpg';
       }

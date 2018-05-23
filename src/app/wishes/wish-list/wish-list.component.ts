@@ -68,7 +68,6 @@ export class WishListComponent implements OnInit {
     this.wish.price = '0DKK';
     this.wish.link = 'www.google.com';
     this.wish.description = 'Description';
-    this.wish.imageUrl = 'assets/giftdefault.jpg';
     this.aRoute.paramMap
       .switchMap(params => this.wishService.createWish(this.wish,params.get('id'))).map(wish => this.data.changeMessage(wish.id))
       .subscribe(wish =>  this.route.navigateByUrl('/wish'));

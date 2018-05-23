@@ -6,7 +6,7 @@
         <img style="width:125px;height:125px;"
              [hidden]="!srcLoaded"
              matTooltipPosition = "below"
-             matTooltip="Drop new image here or click to browse picture"
+             matTooltip="Drop new image here"
              [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
              appUpload
              (hovering)="hovering($event)"
