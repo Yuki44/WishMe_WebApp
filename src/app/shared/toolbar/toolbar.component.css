@@ -1,0 +1,15 @@
+.image{
+  transform: scale(0.8);
+  border: none;
+  outline:none;
+}
+
+.image:hover{
+  transform: scale(1);
+  animation: ease-in-out;
+  background-color: transparent;
+  cursor: pointer;
+  padding-top: 4px;
+  border: none;
+  outline:none;
+}
