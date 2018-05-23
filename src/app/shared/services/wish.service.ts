@@ -37,11 +37,11 @@ export class WishService {
       const data = actions.payload.data() as Wish;
       this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
         data.imageUrl = url;
-
       });
       if(data.imageUrl == null){
         data.imageUrl = 'assets/giftdefault.jpg';
       }
+
       return data;
     });
 

@@ -11,8 +11,11 @@ admin.initializeApp(functions.config().firebase);
 exports.deletedWishlist = functions.firestore
     .document('wishlist/{id}')
     .onDelete((snap, context) => {
+    const previousData = snap.before.data();
     const deletedValue = snap.data();
-    console.log("Deleted: " + deletedValue.id + " " + context);
+    console.log("Deleted wishlist's ID: ", JSON.stringify(deletedValue));
+    console.log("Before data: ", previousData);
+    console.log("Before data Stringify: ", JSON.stringify(previousData));
     admin.firestore().collection('wish').where('owner', '==', "igaXZSdnlp2pHqwm203h").get().then(result => {
         console.log("Checking for the retrieved test wish: ", JSON.stringify(result));
     });

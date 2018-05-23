@@ -94,6 +94,7 @@ export class HomeComponent implements OnInit {
     });
   }
   deleteList(wl: WishList){
+    event.stopPropagation();
     this.wList = new WishList();
     this.deleteWishRef = this.dialog.open(DeleteWishlistComponent, {
       hasBackdrop: false,
