@@ -9,10 +9,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule,
-  MatIconModule, MatSpinner, MatProgressSpinnerModule } from '@angular/material';
+  MatIconModule, MatSpinner, MatProgressSpinnerModule, MatTooltipModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SignupComponent } from './signup/signup.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -28,13 +29,10 @@ import { SignupComponent } from './signup/signup.component';
     MatSnackBarModule,
     ProfileModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
     MatSnackBarModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    BrowserAnimationsModule
+    MatTooltipModule
   ],
   declarations: [LoginComponent, SignupComponent],
   exports: [ MatButtonModule, MatCardModule, FlexLayoutModule ],

@@ -9,6 +9,13 @@ import { Subscription } from 'rxjs/Subscription';
 import { UserService } from '../../profile/shared/user.service';
 import { FileStorageService } from '../../shared/storage/file-storage.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import {
+  transition,
+  animate,
+  trigger,
+  state,
+  style
+} from '@angular/animations';
 
 @Component({
   selector: 'app-signup',
@@ -20,11 +27,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   userCreated: boolean;
   profileForm: FormGroup;
   user: User;
-  userSub: Subscription;
-  isHovering: boolean;
-  profileImgUrl: String;
-  srcLoaded: boolean;
-  userUid: String;
+  loading: boolean;
+  signedUp: boolean;
 
   constructor(
     private authService: AuthService,
@@ -50,7 +54,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loading = false;
+  }
 
   ngOnDestroy() {
     // this.userSub.unsubscribe();
@@ -71,41 +77,24 @@ export class SignupComponent implements OnInit, OnDestroy {
     return this.signupForm.get(formControl).hasError(errorCode);
   }
 
-  prepareNewUser() {
-    this.user = new User();
-  }
-
-  save() {
-    this.prepareNewUser();
+  sigUp() {
     const signupModel = this.signupForm.value as User;
     this.authService.signUpUser(signupModel);
+    this.signedUp = true;
+  }
+
+  saveUser() {
+    this.user = new User();
     const profileModel = this.profileForm.value as User;
     this.user = profileModel;
-    this.userService
-      .createUserProfile(this.user).then(() => {
-        this.route.navigateByUrl('/home');
-        this.snack.open('user saved', null, {
-          duration: 2000
-        });
-      }).catch(error => {
-        this.snack.open('Something went wrong!', null, { duration: 4000 });
+    this.userService.createUserProfile(this.user);
+    this.loading = true;
+    setTimeout(() => {
+      this.route.navigateByUrl('/home');
+      this.snack.open('user saved', null, {
+        duration: 3000
       });
-
-    /*
-      .then(() => {
-        this.route.navigateByUrl('/home');
-        this.snack.open('user saved', null, {
-          duration: 2000
-        });
-      })
-      */
-     /*
-      .catch(error => {
-        this.snack.open('Something went wrong!', null, {
-          duration: 4000
-        });
-      });
-      */
+    }, 1000);
   }
 
   unchanger(): boolean {
@@ -126,34 +115,5 @@ export class SignupComponent implements OnInit, OnDestroy {
       }
     }
     return this.profileForm.get(fc).hasError(ec);
-  }
-
-  hovering(isHovering: boolean) {
-    this.isHovering = isHovering;
-  }
-
-  uploadNewImage(fileList) {
-    console.log('upload new image');
-    if (
-      fileList &&
-      fileList.length === 1 &&
-      ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1
-    ) {
-      this.srcLoaded = false;
-      console.log(fileList.item(0));
-      const file = fileList.item(0);
-      const path = 'profile-images/' + this.user.uid;
-      this.fileStorageService.upload(path, file).subscribe(url => {
-        this.profileImgUrl = url;
-        this.save();
-        this.hovering(false);
-      });
-    } else {
-      console.log('wrong: ');
-      this.snack.open('You need to drop a single png or jpeg image', null, {
-        duration: 4000
-      });
-      this.hovering(false);
-    }
   }
 }
