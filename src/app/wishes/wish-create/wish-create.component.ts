@@ -27,7 +27,7 @@ import { FileStorageService } from '../../shared/storage/file-storage.service';
 
 export class WishCreateComponent implements OnInit {
   newWishForm: FormGroup;
-  rating: number;
+  rate: number;
   img: String;
   isHovering: boolean;
   srcLoaded: boolean;
@@ -53,11 +53,11 @@ export class WishCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.data.currentMessage.subscribe(message => this.message = message);
     console.log('message :' + this.message);
     this.wishSub = this.wishService.getWishWithImageUrl(this.message).subscribe(wish => {
       this.wish = wish;
+      this.rate = wish.rating;
       if(this.wish.imageUrl == null){
         this.wish.imageUrl = 'assets/giftdefault.jpg';
       }
@@ -66,6 +66,7 @@ export class WishCreateComponent implements OnInit {
 
   }
   addWish(){
+    console.log(this.rate);
     const model = this.newWishForm.value as Wish;
     model.id = this.message;
     model.owner = this.wish.owner;
