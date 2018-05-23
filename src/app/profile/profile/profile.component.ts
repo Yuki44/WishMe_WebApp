@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   userSub: Subscription;
-  img: String;
+  img?: String;
 
   constructor(private userService: UserService,
               private route: Router) { }

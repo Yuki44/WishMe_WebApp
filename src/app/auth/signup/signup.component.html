@@ -1,8 +1,6 @@
 <br>
-<div fxLayout="row" fxLayoutAlign="center" *ngIf='userCreated==false'>
-
+<div fxLayout="row" fxLayoutAlign="center">
   <mat-card fxFlex="50">
-
     <mat-card-header>
       <mat-card-title>
         <h2>
@@ -11,7 +9,7 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (ngSubmit)="signup()" [formGroup]="signupForm" novalidate fxLayout="column">
+      <form [formGroup]="signupForm" novalidate fxLayout="column">
         <mat-form-field fxFlex style="transform: perspective(1px)">
           <input matInput placeholder="Email" formControlName="email">
           <mat-error *ngIf="formControllError('email', 'required')">
@@ -40,25 +38,20 @@
             Rrepeated password does not match
           </mat-error>
         </mat-form-field>
-        <button mat-button color="primary" type="submit" [disabled]="signupForm.invalid">
-          Sign up
-        </button>
       </form>
     </mat-card-content>
-
-
-
-
   </mat-card>
-
 </div>
-
-
-<div *ngIf='userCreated==true'>
+<br>
+<div>
   <div fxLayout="row" fxLayoutAlign="center">
-
     <mat-card fxFlex="50">
       <mat-card-header>
+        <mat-card-title>
+          <h2>
+            <b>Profile data</b>
+          </h2>
+        </mat-card-title>
         <div class="center">
           <img style="width:125px;height:125px;" [hidden]="!srcLoaded" matTooltipPosition="below" matTooltip="Drop new image here or click to browse picture"
             [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'" appUpload (hovering)="hovering($event)" (dropped)="uploadNewImage($event)"
@@ -85,14 +78,12 @@
             <input matInput placeholder="Address" formControlName="address">
           </mat-form-field>
           <div fxLayout="row" fx-flex fxFlexAlign="end">
-            <button mat-fab color="primary" type="submit" [disabled]="profileForm.invalid || unchanger()">
+            <button mat-fab color="primary" type="submit">
               <mat-icon style="color:white">save</mat-icon>
             </button>
           </div>
         </form>
       </mat-card-content>
     </mat-card>
-
   </div>
-
 </div>

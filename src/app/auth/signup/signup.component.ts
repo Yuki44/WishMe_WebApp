@@ -1,4 +1,3 @@
-import { AddProfileComponent } from './../../profile/add-profile/add-profile.component';
 import { User } from './../../shared/entities/user';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -49,40 +48,12 @@ export class SignupComponent implements OnInit, OnDestroy {
       address: '',
       contactEmail: ''
     });
-
-    this.userCreated = false;
   }
 
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
-  }
-
-  signup() {
-    const model = this.signupForm.value as User;
-    this.authService
-      .signup(model)
-      .then(user => {
-        this.userCreated = true;
-        /*
-        this.router.navigateByUrl('home').then(() => {
-          this.snackBar.open('Signed up!', '', {
-            duration: 2000
-          });
-        });
-        */
-      })
-      .catch(error => {
-        /*
-        this.snackBar.open(error.message, '', {
-          duration: 5000
-        });
-        */
-        console.log('ERROR:   ' + error);
-      });
-
-      this.prepareNewUser();
+    // this.userSub.unsubscribe();
   }
 
   formControllError(
@@ -101,48 +72,41 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   prepareNewUser() {
-    this.authService.getAuthUserUid();
     this.user = new User();
-    this.user.uid = this.authService.authUserUid;
-    this.user.name = '';
-    this.user.contactEmail = '';
-    this.user.address = '';
-    this.user.profileImgUrl = '';
-    this.userService.createUserProfile(this.user);
-    this.userSub = this.userService
-    .getUserWithProfileUrl()
-    .subscribe(user => {
-      this.user = user;
-      if (this.user.profileImgUrl) {
-        this.profileImgUrl = user.profileImgUrl;
-      } else {
-        // change to database one
-        this.profileImgUrl = '/assets/baseline-face-24px.svg';
-      }
-      this.profileForm.patchValue(user);
-    });
   }
 
   save() {
-    // this.prepareNewUser();
-    const model = this.profileForm.value as User;
-    model.uid = this.authService.authUserUid;
-    console.log('add-prodile: saving user in model on Save' + model.uid);
+    this.prepareNewUser();
+    const signupModel = this.signupForm.value as User;
+    this.authService.signUpUser(signupModel);
+    const profileModel = this.profileForm.value as User;
+    this.user = profileModel;
     this.userService
-      .updateUser(model)
+      .createUserProfile(this.user).then(() => {
+        this.route.navigateByUrl('/home');
+        this.snack.open('user saved', null, {
+          duration: 2000
+        });
+      }).catch(error => {
+        this.snack.open('Something went wrong!', null, { duration: 4000 });
+      });
+
+    /*
       .then(() => {
         this.route.navigateByUrl('/home');
         this.snack.open('user saved', null, {
           duration: 2000
         });
       })
+      */
+     /*
       .catch(error => {
         this.snack.open('Something went wrong!', null, {
           duration: 4000
         });
       });
+      */
   }
-
 
   unchanger(): boolean {
     const model = this.profileForm.value as User;

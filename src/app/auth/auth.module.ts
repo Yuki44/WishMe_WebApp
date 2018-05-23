@@ -1,5 +1,4 @@
 import { ProfileModule } from './../profile/profile.module';
-import { AddProfileComponent } from './../profile/add-profile/add-profile.component';
 import { LoggedInService } from './shared/logged-in.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { AuthService } from './shared/auth.service';
@@ -39,6 +38,6 @@ import { SignupComponent } from './signup/signup.component';
   ],
   declarations: [LoginComponent, SignupComponent],
   exports: [ MatButtonModule, MatCardModule, FlexLayoutModule ],
-  providers: [ AuthService, AuthGuardService, LoggedInService, AddProfileComponent ]
+  providers: [ AuthService, AuthGuardService, LoggedInService ]
 })
 export class AuthModule { }
