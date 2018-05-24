@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Wish } from '../entities/wish';
 import {Observable} from 'rxjs/Observable';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { WishList } from '../entities/wish-list';
 import { FileStorageService } from '../storage/file-storage.service';
 import { UploadTask } from '../storage/upload-task';
@@ -12,18 +12,23 @@ export class WishService {
   constructor(private fileStorageService: FileStorageService,
               private afs: AngularFirestore) { }
 
-  getWishes(uid: string): Observable<any> {
+  getWishes(uid: string, limit: number): Observable<any> {
 
     let ref =  this.afs.collection
-    ('wish', ref => ref.where('owner', '==', uid));
+    ('wish', ref => ref.where('owner', '==', uid).limit(limit));
     return ref.snapshotChanges().map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data() as Wish;
         data.id = a.payload.doc.id;
-        this.fileStorageService.downloadUrlWish(data.id).subscribe(url =>{
-          data.imageUrl = url ;
-          console.log(data);
-        } );
+        try {
+          this.fileStorageService.downloadUrlWish(data.id).subscribe(url =>{
+            data.imageUrl = url ;
+            console.log(data);
+          });
+        } catch {
+          console.log("something went wrong");
+        }
+
         if(data.imageUrl == null){
           data.imageUrl = 'assets/giftdefault.jpg';
         }
@@ -35,9 +40,14 @@ export class WishService {
   getWishWithImageUrl(uid: string): Observable<any> {
     return this.afs.collection('wish').doc(uid).snapshotChanges().map(actions => {
       const data = actions.payload.data() as Wish;
-      this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
-        data.imageUrl = url;
-      });
+      try {
+        this.fileStorageService.downloadUrlWish(data.id).subscribe(url => {
+          data.imageUrl = url;
+        });
+      } catch {
+        console.log("something went wrong");
+      }
+
       if(data.imageUrl == null){
         data.imageUrl = 'assets/giftdefault.jpg';
       }
@@ -69,7 +79,5 @@ export class WishService {
     return this.afs.collection('wish').doc(w.id).update({description: w.description, link: w.link, name: w.name, owner: w.owner, price: w.price, rating: w.rating});
 
   }
-
-
 
 }
