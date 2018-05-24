@@ -84,17 +84,17 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   saveUser() {
+    this.loading = true;
     this.user = new User();
     const profileModel = this.profileForm.value as User;
     this.user = profileModel;
-    this.userService.createUserProfile(this.user);
-    this.loading = true;
-    setTimeout(() => {
+    this.userService.createUserProfile(this.user).then(() => {
       this.route.navigateByUrl('/home');
+      this.loading = true;
       this.snack.open('user saved', null, {
         duration: 3000
       });
-    }, 1000);
+    });
   }
 
   unchanger(): boolean {
