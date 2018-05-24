@@ -9,6 +9,7 @@ import { UploadDirective } from './directives/upload.directive';
 import { WishlistService } from './services/wishlist.service';
 import { WishService } from './services/wish.service';
 import { DataService } from './services/data.service';
+import { ScrollableDirective } from './directives/scrollable.directive';
 
 @NgModule({
   imports: [
@@ -20,8 +21,8 @@ import { DataService } from './services/data.service';
     AngularFireStorageModule
 
   ],
-  declarations: [ToolbarComponent, UploadDirective],
-  exports: [ToolbarComponent, MatButtonModule, MatToolbarModule, UploadDirective],
+  declarations: [ToolbarComponent, UploadDirective, ScrollableDirective],
+  exports: [ToolbarComponent, MatButtonModule, MatToolbarModule, UploadDirective, ScrollableDirective],
   providers: [
     FileStorageService,
     WishlistService,
