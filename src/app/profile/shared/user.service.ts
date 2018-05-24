@@ -57,16 +57,14 @@ getUser(): Observable<User> {
       });
   }
 
-  createUserProfile(user: User): Promise<any> {
-    //
+  createUserProfileEEE(user: User): Promise<any> {
     return new Promise((resolve, reject) => {
       this.authService
       .getAuthUser()
-    //  .first()
       .subscribe(authUser => {
         if (authUser && user != null) {
           const coll = this.angularFireStore.collection<User>('users').doc(authUser.uid);
-          console.log('user.service/createUserProfile()  authUserUid: ' + authUser.uid);
+          console.log('LOOK ' + authUser.uid);
           coll.set({
             address: user.address,
             contactEmail: user.contactEmail,
@@ -78,6 +76,32 @@ getUser(): Observable<User> {
       }
     });
   });
+}
+
+createUserProfile(user: User): Promise<any> {
+  return new Promise((
+  //  resolve, reject
+  ) => {
+    this.authService
+    .getAuthUser()
+    .subscribe(authUser => {
+      if (authUser && user != null) {
+        const coll = this.angularFireStore.collection<User>('users').doc(authUser.uid);
+        coll.set({
+          address: user.address,
+          contactEmail: user.contactEmail,
+          name: user.name,
+          uid: authUser.uid
+        }
+      );
+     // .then(resolve).catch(reject);
+    }
+    // else {
+    //    reject('User == null / no AuthUser');
+    // }
+  });
+});
+
 }
 
   updateUser(user: User): Promise<any> {

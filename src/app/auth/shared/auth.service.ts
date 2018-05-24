@@ -5,9 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
-  public authUserUid: string;
-  aa: string;
-
   constructor(private fireAuth: AngularFireAuth) {}
 
   login(email: string, password: string): Promise<any> {
@@ -25,8 +22,19 @@ export class AuthService {
     return this.fireAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(
       user.email,
       user.password
-    );
+    ).then(function () {
+   console.log('OTO uid ', user.uid);
+
+ });
   }
+
+  signUpUser(user: User) {
+    this.fireAuth.auth.createUserWithEmailAndPassword(
+      user.email,
+      user.password).catch(function (error) {
+    console.log(error);
+  });
+ }
 
   isAuthenticated(): Observable<boolean> {
     return this.fireAuth.authState.map(authState => {
@@ -44,11 +52,5 @@ export class AuthService {
     });
   }
 
-  getAuthUserUid(): void {
-    this.fireAuth.authState.subscribe(authUser => {
-      this.authUserUid = authUser.uid;
-    });
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@: ' + this.authUserUid);
-  }
 
 }
