@@ -1,8 +1,11 @@
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 export function matchingPassword(): ValidatorFn {
-  return (repeatedPassword: AbstractControl): {
-    [key: string]: any } => {
+  return (
+    repeatedPassword: AbstractControl
+  ): {
+    [key: string]: any;
+  } => {
     const formGroup = repeatedPassword.parent;
     if (formGroup) {
       const password = formGroup.get('password');

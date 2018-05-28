@@ -7,15 +7,6 @@ import { Router } from '@angular/router';
 import { matchingPassword } from '../shared/password.validator';
 import { Subscription } from 'rxjs/Subscription';
 import { UserService } from '../../profile/shared/user.service';
-import { FileStorageService } from '../../shared/storage/file-storage.service';
-import { AngularFirestore } from 'angularfire2/firestore';
-import {
-  transition,
-  animate,
-  trigger,
-  state,
-  style
-} from '@angular/animations';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +15,6 @@ import {
 })
 export class SignupComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
-  userCreated: boolean;
   profileForm: FormGroup;
   user: User;
   loading: boolean;
@@ -32,14 +22,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private snackBar: MatSnackBar,
-    private router: Router,
     private userService: UserService,
     private formBuilder: FormBuilder,
     private snack: MatSnackBar,
-    private fileStorageService: FileStorageService,
-    private route: Router,
-    private angularFireStore: AngularFirestore
+    private route: Router
   ) {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
