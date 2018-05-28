@@ -19,22 +19,20 @@ export class AuthService {
   }
 
   signup(user: User): Promise<any> {
-    return this.fireAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(
-      user.email,
-      user.password
-    ).then(function () {
-   console.log('OTO uid ', user.uid);
-
- });
+    return this.fireAuth.auth
+      .createUserAndRetrieveDataWithEmailAndPassword(user.email, user.password)
+      .then(function() {
+        console.log('OTO uid ', user.uid);
+      });
   }
 
   signUpUser(user: User) {
-    this.fireAuth.auth.createUserWithEmailAndPassword(
-      user.email,
-      user.password).catch(function (error) {
-    console.log(error);
-  });
- }
+    this.fireAuth.auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
   isAuthenticated(): Observable<boolean> {
     return this.fireAuth.authState.map(authState => {
@@ -51,6 +49,4 @@ export class AuthService {
       return { email: authState.email, uid: authState.uid };
     });
   }
-
-
 }

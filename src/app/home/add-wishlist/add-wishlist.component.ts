@@ -13,16 +13,16 @@ export class AddWishlistComponent implements OnInit {
 
   wishList: WishList;
 
-
-  constructor(public dialogRef: MatDialogRef<AddWishlistComponent>,
-              private fb: FormBuilder) {
+  constructor(
+    public dialogRef: MatDialogRef<AddWishlistComponent>,
+    private fb: FormBuilder
+  ) {
     this.form = fb.group({
       name: ['', [Validators.required]]
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -38,7 +38,8 @@ export class AddWishlistComponent implements OnInit {
     }
     return this.form.get(fc).hasError(ec);
   }
-  save(){
+
+  save() {
     this.dialogRef.close(`${this.form.value.name}`);
   }
 }

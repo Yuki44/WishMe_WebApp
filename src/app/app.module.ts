@@ -6,22 +6,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {WishlistsModule} from './home/home.module';
-
+import { WishlistsModule } from './home/home.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule, MatCard, MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCard,
+  MatFormField,
+  MatFormFieldModule,
+  MatInputModule
+} from '@angular/material';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ProfileModule } from './profile/profile.module';
-import {WishesModule} from './wishes/wishes.module';
+import { WishesModule } from './wishes/wishes.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -32,7 +35,7 @@ import {WishesModule} from './wishes/wishes.module';
     WishlistsModule,
     MatButtonModule,
     WishesModule,
-     MatButtonModule,
+    MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
     MatFormFieldModule,
@@ -45,6 +48,6 @@ import {WishesModule} from './wishes/wishes.module';
     ProfileModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

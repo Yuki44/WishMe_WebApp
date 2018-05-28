@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
-import { UploadTask } from './upload-task';
 
 @Injectable()
 export class FileStorageService {
-
-  constructor(private afso: AngularFireStorage) { }
+  constructor(private afso: AngularFireStorage) {}
 
   upload(path: string, file: File): Observable<any> {
     const fileRef = this.afso.ref(path); // Add this line to get the path as a ref

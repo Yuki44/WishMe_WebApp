@@ -39,10 +39,10 @@
           </mat-error>
         </mat-form-field>
         <div fxLayout="row" fx-flex fxFlexAlign="end">
-            <button mat-fab color="primary" [disabled]="signupForm.invalid" (click)="sigUp()">
-              <mat-icon style="color:white">save</mat-icon>
-            </button>
-          </div>
+          <button mat-fab color="primary" [disabled]="signupForm.invalid" (click)="sigUp()">
+            <mat-icon style="color:white">save</mat-icon>
+          </button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
@@ -50,7 +50,7 @@
 <br>
 <div>
   <div fxLayout="row" fxLayoutAlign="center">
-    <mat-card fxFlex="50" *ngIf="signedUp" >
+    <mat-card fxFlex="50" *ngIf="signedUp">
       <mat-card-header>
         <mat-card-title>
           <h2>

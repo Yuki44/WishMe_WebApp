@@ -13,37 +13,39 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
-  constructor( private authService: AuthService,
-               private fb: FormBuilder,
-               private snack: MatSnackBar,
-               private route: Router) {
-      this.loginForm = fb.group({
-        email: '',
-        password: ''
-      });
-     }
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private snack: MatSnackBar,
+    private route: Router
+  ) {
+    this.loginForm = fb.group({
+      email: '',
+      password: ''
+    });
+  }
 
   ngOnInit() {
     this.authService.logout();
-
   }
   login() {
     const loginModel = this.loginForm.value;
-    this.authService .login(loginModel.email, loginModel.password)
-    .then(() => {
-      this.route.navigateByUrl('/home');
-      this.snack.open('Logged in!', null, {
-        duration: 4000
+    this.authService
+      .login(loginModel.email, loginModel.password)
+      .then(() => {
+        this.route.navigateByUrl('/home');
+        this.snack.open('Logged in!', null, {
+          duration: 4000
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        this.snack.open(error, null, {
+          duration: 4000
+        });
       });
-    })
-    .catch(error => {console.log(error);
-      this.snack.open(error, null, {
-        duration: 4000
-      });
-    });
-}
+  }
   signUp() {
     this.route.navigateByUrl('/signup');
   }
-
 }

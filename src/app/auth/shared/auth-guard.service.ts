@@ -4,8 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate() {
     return this.authService.isAuthenticated().map(isLoggedIn => {

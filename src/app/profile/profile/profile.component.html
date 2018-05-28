@@ -1,35 +1,27 @@
 <br>
 <div fxLayout="row" fxLayoutAlign="center" *ngIf="user">
-  <mat-card  >
+  <mat-card>
     <mat-card-header>
-
-
       <div class="center">
-        <img style="width:125px;height:125px;"
-             [hidden]="!srcLoaded"
-             [src]="img"
-             mat-card-avatar
-             (load)="srcLoaded = true">
-        <mat-spinner
-          mat-card-avatar
-          diameter="100"
-          *ngIf="!srcLoaded"></mat-spinner>
+        <img style="width:125px;height:125px;" [hidden]="!srcLoaded" [src]="img" mat-card-avatar (load)="srcLoaded = true">
+        <mat-spinner mat-card-avatar diameter="100" *ngIf="!srcLoaded"></mat-spinner>
       </div>
     </mat-card-header>
     <mat-card-content>
-      <h1><mat-icon style="color: lightgrey">person</mat-icon>   {{user.name}}</h1>
+      <h1>
+        <mat-icon style="color: lightgrey">person</mat-icon> {{user.name}}</h1>
     </mat-card-content>
     <mat-card-content>
-      <h1><mat-icon style="color: lightgrey">mail</mat-icon>   {{user.contactEmail}}</h1>
+      <h1>
+        <mat-icon style="color: lightgrey">mail</mat-icon> {{user.contactEmail}}</h1>
     </mat-card-content>
     <mat-card-content>
-      <h1><mat-icon style="color: lightgrey">location_on</mat-icon>   {{user.address}}</h1>
+      <h1>
+        <mat-icon style="color: lightgrey">location_on</mat-icon> {{user.address}}</h1>
     </mat-card-content>
     <mat-card-content>
       <div fxLayout="row" fxLayoutAlign="end">
-        <button mat-icon-button
-                color="accent"
-                (click)="edit()">
+        <button mat-icon-button color="accent" (click)="edit()">
           <mat-icon>edit</mat-icon>
         </button>
       </div>
@@ -37,4 +29,3 @@
   </mat-card>
 </div>
 <br>
-

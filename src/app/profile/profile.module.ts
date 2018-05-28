@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {
-  MatIconModule, MatProgressSpinnerModule, MatTooltipModule, MatSnackBarModule, MatCardModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+  MatTooltipModule,
+  MatSnackBarModule,
+  MatCardModule,
   MatButtonModule,
   MatInputModule
 } from '@angular/material';
@@ -33,12 +37,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatTooltipModule,
     MatProgressSpinnerModule,
     SharedModule
-
   ],
-  declarations: [EditProfileComponent, ProfileComponent ],
-  exports: [ProfileComponent ],
-  providers: [
-    UserService
-  ]
+  declarations: [EditProfileComponent, ProfileComponent],
+  exports: [ProfileComponent],
+  providers: [UserService]
 })
-export class ProfileModule { }
+export class ProfileModule {}

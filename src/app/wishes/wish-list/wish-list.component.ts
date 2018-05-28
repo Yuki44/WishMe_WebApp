@@ -14,9 +14,6 @@ import { WishlistService } from '../../shared/services/wishlist.service';
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.scss']
-
-
-
 })
 export class WishListComponent implements OnInit {
   descriptionVisible: boolean;
@@ -26,19 +23,17 @@ export class WishListComponent implements OnInit {
   deleteWishRef: MatDialogRef<WishDeleteComponent>;
   cursor = 3;
 
+  constructor(
+    private route: Router,
+    private aRoute: ActivatedRoute,
+    private wishService: WishService,
+    private listService: WishlistService,
+    private dialog: MatDialog,
+    private data: DataService
+  ) {}
 
-
-  constructor(private route: Router,
-              private aRoute: ActivatedRoute,
-              private wishService: WishService,
-              private listService: WishlistService,
-              private dialog: MatDialog,
-              private data: DataService) {
-
-  }
-
-  toggleDescription(){
-    if(this.descriptionVisible){
+  toggleDescription() {
+    if (this.descriptionVisible) {
       this.descriptionVisible = false;
     } else {
       this.descriptionVisible = true;
@@ -46,30 +41,34 @@ export class WishListComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.aRoute.paramMap
-      .switchMap(params => this.wishService.getWishes(params.get('id'), this.cursor))
-      .subscribe(wishes => {this.wishes = wishes,
-      this.cursor = 3});
-    this.aRoute.paramMap.switchMap(params => this.listService.getOneWishlist(params.get('id'))).
-      subscribe(list => {
-    this.wishList = list;
-    });
+    this.aRoute.paramMap
+      .switchMap(params =>
+        this.wishService.getWishes(params.get('id'), this.cursor)
+      )
+      .subscribe(wishes => {
+        (this.wishes = wishes), (this.cursor = 3);
+      });
+    this.aRoute.paramMap
+      .switchMap(params => this.listService.getOneWishlist(params.get('id')))
+      .subscribe(list => {
+        this.wishList = list;
+      });
   }
 
   scrollHandler(e) {
-    if(e === 'bottom') {
-    // this.wishes.length = 0;
-     this.cursor = this.cursor +3;
+    if (e === 'bottom') {
+      this.cursor = this.cursor + 3;
       this.aRoute.paramMap
-        .switchMap(params => this.wishService.getWishes(params.get('id'), this.cursor))
-        .subscribe(wishes => this.wishes = wishes);
+        .switchMap(params =>
+          this.wishService.getWishes(params.get('id'), this.cursor)
+        )
+        .subscribe(wishes => (this.wishes = wishes));
     }
   }
 
   editWish(wish: Wish) {
     this.data.changeMessage(wish.id);
     this.route.navigateByUrl('/wish');
-
   }
 
   addWish() {
@@ -80,20 +79,23 @@ export class WishListComponent implements OnInit {
     this.wish.link = 'www.google.com';
     this.wish.description = 'Description';
     this.aRoute.paramMap
-      .switchMap(params => this.wishService.createWish(this.wish,params.get('id'))).map(wish => this.data.changeMessage(wish.id))
-      .subscribe(wish =>  this.route.navigateByUrl('/wish'));
-
+      .switchMap(params =>
+        this.wishService.createWish(this.wish, params.get('id'))
+      )
+      .map(wish => this.data.changeMessage(wish.id))
+      .subscribe(wish => this.route.navigateByUrl('/wish'));
   }
 
-  deleteWish(w: Wish){
+  deleteWish(w: Wish) {
     this.wish = new Wish();
     this.deleteWishRef = this.dialog.open(WishDeleteComponent, {
       hasBackdrop: false,
       data: {
-        name: this.wish ? w.name : '',
+        name: this.wish ? w.name : ''
       }
     });
-    this.deleteWishRef.afterClosed()
+    this.deleteWishRef
+      .afterClosed()
       .pipe(filter(name => name))
       .subscribe(wish => {
         this.wishService.deleteWish(w);

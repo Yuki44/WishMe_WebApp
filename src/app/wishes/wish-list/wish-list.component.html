@@ -1,61 +1,51 @@
-
 <div fxLayout="column" fxFlexFill>
-
-  <mat-card >
-      <mat-card-title><h1>{{wishList?.wListName}}</h1></mat-card-title>
+  <mat-card>
+    <mat-card-title>
+      <h1>{{wishList?.wListName}}</h1>
+    </mat-card-title>
     <div class="scroll" scrollable (scrollPosition)="scrollHandler($event)">
-
-    <div *ngFor="let wish of wishes">
+      <div *ngFor="let wish of wishes">
         <div fxLayout="row">
-          <div class="wish-card" fxFlexFill >
+          <div class="wish-card" fxFlexFill>
             <div class="card-header">
               <span style="font-size: 30px; padding-left: 2%;">{{wish.name}}</span>
             </div>
             <div class="row">
               <div class="wish-image">
-                <img [src]="wish.imageUrl"
-                     class="rounded">
+                <img [src]="wish.imageUrl" class="rounded">
               </div>
               <div class="container">
                 <div class="row2">
-                  <bar-rating [readOnly]="true" [rate]="wish?.rating" [max]="5" [theme]="'stars'" ></bar-rating>
+                  <bar-rating [readOnly]="true" [rate]="wish?.rating" [max]="5" [theme]="'stars'"></bar-rating>
                   <p class="wish-price">Avg. {{wish.price}}</p>
-                  <p class="wish-link">Link: <a [href]=" 'http://' + wish.link" style="color: #36aadf">{{wish.link}}</a></p>
+                  <p class="wish-link">Link:
+                    <a [href]=" 'http://' + wish.link" style="color: #36aadf">{{wish.link}}</a>
+                  </p>
                   <a class="more-btn" (click)="toggleDescription()">More</a>
                 </div>
                 <div *ngIf="descriptionVisible" style="margin-top: 2%">
-                  <span  class="description-text">{{wish.description}} </span>
+                  <span class="description-text">{{wish.description}} </span>
                 </div>
               </div>
             </div>
             <div fxLayoutAlign="end">
               <button mat-icon-button color="warn" (click)="deleteWish(wish)">
-                <mat-icon >delete</mat-icon>
+                <mat-icon>delete</mat-icon>
               </button>
               <button mat-icon-button color="accent" (click)="editWish(wish)">
-                <mat-icon >edit</mat-icon>
+                <mat-icon>edit</mat-icon>
               </button>
             </div>
           </div>
         </div>
-    <mat-card-content>
+        <mat-card-content>
         </mat-card-content>
       </div>
     </div>
   </mat-card>
-  </div>
-
-
-
-<div fxLayout="column" class="fab"   >
-  <button (click)="addWish()"  mat-fab>
+</div>
+<div fxLayout="column" class="fab">
+  <button (click)="addWish()" mat-fab>
     <mat-icon style="color: white; padding-left: 2%">add</mat-icon>
   </button>
 </div>
-
-
-
-
-
-
-

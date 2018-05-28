@@ -1,38 +1,29 @@
 <app-profile></app-profile>
 <br>
-  <div fxLayout="row" fxLayoutAlign="center" *ngFor="let wishlist of wishlists">
-    <mat-card fxFlex="75">
-      <div (click)="goToWishList(wishlist)">
-        <mat-card-header fxLayout="column">
-          <label fxFlex>
-            <h1>
-              <mat-icon style="color: lightgrey; padding: 40px" class="size">card_giftcard</mat-icon>
-                {{wishlist.wListName}}
-            </h1>
-          </label>
-          <div fxFlexAlign="end">
-            <button mat-icon-button color="warn" (click)="deleteList(wishlist)">
-              <mat-icon >delete</mat-icon>
-            </button>
-            <button mat-icon-button color="accent" (click)="editList(wishlist)">
-                <mat-icon >edit</mat-icon>
-              </button>
-            </div>
-        </mat-card-header>
-      </div>
-    </mat-card>
-  </div>
+<div fxLayout="row" fxLayoutAlign="center" *ngFor="let wishlist of wishlists">
+  <mat-card fxFlex="75">
+    <div (click)="goToWishList(wishlist)">
+      <mat-card-header fxLayout="column">
+        <label fxFlex>
+          <h1>
+            <mat-icon style="color: lightgrey; padding: 40px" class="size">card_giftcard</mat-icon>
+            {{wishlist.wListName}}
+          </h1>
+        </label>
+        <div fxFlexAlign="end">
+          <button mat-icon-button color="warn" (click)="deleteList(wishlist)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="editList(wishlist)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+    </div>
+  </mat-card>
+</div>
 <div fxLayout="column" class="fab">
   <button color="accent" (click)="openDialog()" mat-fab>
     <mat-icon style="color: white">playlist_add</mat-icon>
   </button>
 </div>
-
-
-
-
-
-
-
-
-
