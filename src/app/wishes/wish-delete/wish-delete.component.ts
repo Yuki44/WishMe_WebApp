@@ -9,22 +9,20 @@ import { DeleteWishlistComponent } from '../../home/delete-wishlist/delete-wishl
   styleUrls: ['./wish-delete.component.scss']
 })
 export class WishDeleteComponent implements OnInit {
-
   wish: Wish;
-  constructor(@Inject(MAT_DIALOG_DATA) private data,
-              public dialogRef: MatDialogRef<DeleteWishlistComponent>) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private data,
+    public dialogRef: MatDialogRef<DeleteWishlistComponent>
+  ) {}
 
   ngOnInit() {
-    this.wish = new Wish;
+    this.wish = new Wish();
     this.wish.name = this.data.name;
-
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
-  save(){
+  save() {
     this.dialogRef.close(`${this.wish.name}`);
   }
-
-
 }

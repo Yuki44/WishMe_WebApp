@@ -3,20 +3,10 @@
   <mat-card fxFlex="50">
     <mat-card-header>
       <div class="center">
-        <img style="width:125px;height:125px;"
-             [hidden]="!srcLoaded"
-             matTooltipPosition = "below"
-             matTooltip="Drop new image here"
-             [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
-             appUpload
-             (hovering)="hovering($event)"
-             (dropped)="uploadNewImage($event)"
-             [src]="isHovering ? '/assets/ic_cloud_upload_black_48px.svg' : wish?.imageUrl"
-             (load)="srcLoaded = true">
-        <mat-spinner
-          mat-card-avatar
-          diameter="100"
-          *ngIf="!srcLoaded"></mat-spinner>
+        <img style="width:125px;height:125px;" [hidden]="!srcLoaded" matTooltipPosition="below" matTooltip="Drop new image here"
+          [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'" appUpload (hovering)="hovering($event)" (dropped)="uploadNewImage($event)"
+          [src]="isHovering ? '/assets/ic_cloud_upload_black_48px.svg' : wish?.imageUrl" (load)="srcLoaded = true">
+        <mat-spinner mat-card-avatar diameter="100" *ngIf="!srcLoaded"></mat-spinner>
       </div>
     </mat-card-header>
     <mat-card-content>
@@ -34,13 +24,10 @@
           <input matInput placeholder="Short description:" formControlName="description">
         </mat-form-field>
         <bar-rating fxFlexAlign="center" formControlName="rating" [(ngModel)]="rate" [max]="5" [theme]="'stars'"></bar-rating>
-        <button mat-icon-button
-                type="submit" fxFlexAlign="end">
-          <mat-icon color="accent"  >save</mat-icon>
-
+        <button mat-icon-button type="submit" fxFlexAlign="end">
+          <mat-icon color="accent">save</mat-icon>
         </button>
       </form>
-
     </mat-card-content>
   </mat-card>
 </div>

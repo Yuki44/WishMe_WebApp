@@ -4,15 +4,11 @@ import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
   selector: '[appUpload]'
 })
 export class UploadDirective {
+  @Output() hovering = new EventEmitter<boolean>();
 
+  @Output() dropped = new EventEmitter<FileList>();
 
-  @Output()
-  hovering = new EventEmitter<boolean>();
-
-  @Output()
-  dropped = new EventEmitter<FileList>();
-
-  constructor() { }
+  constructor() {}
 
   @HostListener('dragenter', ['$event'])
   onDragEnter(event) {
@@ -36,5 +32,4 @@ export class UploadDirective {
     event.preventDefault();
     this.dropped.emit(event.dataTransfer.files);
   }
-
 }

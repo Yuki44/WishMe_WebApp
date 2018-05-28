@@ -9,19 +9,19 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-
   isLoggedIn: boolean;
-  constructor(private authService: AuthService,
-              private route: Router,
-              private snack: MatSnackBar) {
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+    private snack: MatSnackBar
+  ) {
     this.isLoggedIn = false;
   }
 
   ngOnInit() {
-    this.authService.isAuthenticated()
-      .subscribe(isLogged => {
-        this.isLoggedIn = isLogged;
-      });
+    this.authService.isAuthenticated().subscribe(isLogged => {
+      this.isLoggedIn = isLogged;
+    });
   }
 
   login() {
@@ -31,14 +31,19 @@ export class ToolbarComponent implements OnInit {
     this.route.navigateByUrl('/');
   }
 
-  logout(){
-    this.authService.logout()
+  logout() {
+    this.authService
+      .logout()
       .then(() => this.route.navigateByUrl('/login'))
-      .then(() => this.snack.open('You are now logged out!', null, {
-        duration: 4000
-      }))
-      .catch(error => this.snack.open(error, null, {
-        duration: 4000
-      }));
+      .then(() =>
+        this.snack.open('You are now logged out!', null, {
+          duration: 4000
+        })
+      )
+      .catch(error =>
+        this.snack.open(error, null, {
+          duration: 4000
+        })
+      );
   }
 }

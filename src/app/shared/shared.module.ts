@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MatButtonModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatSnackBarModule,
+  MatToolbarModule
+} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileStorageService } from './storage/file-storage.service';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -19,15 +23,15 @@ import { ScrollableDirective } from './directives/scrollable.directive';
     FlexLayoutModule,
     MatSnackBarModule,
     AngularFireStorageModule
-
   ],
   declarations: [ToolbarComponent, UploadDirective, ScrollableDirective],
-  exports: [ToolbarComponent, MatButtonModule, MatToolbarModule, UploadDirective, ScrollableDirective],
-  providers: [
-    FileStorageService,
-    WishlistService,
-    WishService,
-    DataService
-  ]
+  exports: [
+    ToolbarComponent,
+    MatButtonModule,
+    MatToolbarModule,
+    UploadDirective,
+    ScrollableDirective
+  ],
+  providers: [FileStorageService, WishlistService, WishService, DataService]
 })
-export class SharedModule { }
+export class SharedModule {}

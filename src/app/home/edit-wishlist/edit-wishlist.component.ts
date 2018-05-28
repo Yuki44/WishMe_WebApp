@@ -10,15 +10,15 @@ import { AddWishlistComponent } from '../add-wishlist/add-wishlist.component';
   styleUrls: ['./edit-wishlist.component.scss']
 })
 export class EditWishlistComponent implements OnInit {
-
   form: FormGroup;
 
   wishList: WishList;
 
-
-  constructor(public dialogRef: MatDialogRef<AddWishlistComponent>,
-              private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) private data) {
+  constructor(
+    public dialogRef: MatDialogRef<AddWishlistComponent>,
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private data
+  ) {
     this.form = fb.group({
       name: ['', [Validators.required]]
     });
@@ -27,7 +27,7 @@ export class EditWishlistComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       name: this.data ? this.data.name : ''
-    })
+    });
   }
 
   onNoClick(): void {
@@ -44,8 +44,7 @@ export class EditWishlistComponent implements OnInit {
     }
     return this.form.get(fc).hasError(ec);
   }
-  save(){
+  save() {
     this.dialogRef.close(`${this.form.value.name}`);
   }
-
 }
