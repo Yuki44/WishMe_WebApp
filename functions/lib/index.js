@@ -1,10 +1,11 @@
 'use strict';
 const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+const admin = require('firebase-admin'); // Admin is necessary in order to call firebase CRUD methods
 admin.initializeApp(functions.config().firebase);
-exports.deletedWishlist = functions.firestore
-    .document('wishlist/{id}')
+exports.deletedWishlist = functions.firestore // exports the function to Firebase
+    .document('wishlist/{id}') // We check for the wishlist id
     .onDelete((snap, context) => {
+    // Block of code to run:
     admin.firestore().collection('wish').where('owner', '==', snap.id).get().then(refs => {
         refs.forEach(snapshot => {
             console.log("snapshot: ", JSON.stringify(snapshot));
@@ -15,6 +16,6 @@ exports.deletedWishlist = functions.firestore
             });
         });
     });
-    return true;
+    return true; // Cloud Functions needs to return something or especially a promise
 });
 //# sourceMappingURL=index.js.map
