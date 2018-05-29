@@ -59,6 +59,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.img = 'assets/baseline-face-24px.svg';
+    this.userSub = this.userService.getUser().subscribe(user => this.user = user);
     this.userSub = this.userService.getUserWithProfileUrl().subscribe(user => {
       this.user = user;
       console.log(user.profileImgUrl);

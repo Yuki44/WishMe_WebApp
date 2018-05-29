@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import { matchingPassword } from '../shared/password.validator';
 import { Subscription } from 'rxjs/Subscription';
 import { UserService } from '../../profile/shared/user.service';
+import { FileStorageService } from '../../shared/storage/file-storage.service';
+import { getFile } from 'ts-node';
+import { getSourceFile } from 'tslint';
+import { readFile } from 'fs';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +29,8 @@ export class SignupComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private snack: MatSnackBar,
-    private route: Router
+    private route: Router,
+    private fileService: FileStorageService
   ) {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -74,14 +79,14 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.user = new User();
     const profileModel = this.profileForm.value as User;
     this.user = profileModel;
-    this.userService.createUserProfile(this.user).then(() => {
+    this.userService.createUserProfile(this.user);
       this.route.navigateByUrl('/home');
       this.loading = true;
       this.snack.open('user saved', null, {
         duration: 3000
       });
-    });
-  }
+    }
+
 
   unchanger(): boolean {
     const model = this.profileForm.value as User;
