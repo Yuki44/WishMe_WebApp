@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authService.logout();
   }
+
   login() {
     const loginModel = this.loginForm.value;
     this.authService
