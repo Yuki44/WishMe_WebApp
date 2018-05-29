@@ -16,7 +16,7 @@ import { WishlistService } from '../../shared/services/wishlist.service';
   styleUrls: ['./wish-list.component.scss']
 })
 export class WishListComponent implements OnInit {
-  descriptionVisible: boolean;
+  descriptionVisible: boolean; // Makes the wish description visible or not
   wishes: Wish[];
   wishList: WishList;
   wish: Wish;
