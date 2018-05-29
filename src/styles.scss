@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/theming';
-@import '~ngx-bar-rating/themes/br-default-theme';
-@import '~ngx-bar-rating/themes/br-bootstrap-theme';
-@import '~ngx-bar-rating/themes/br-fontawesome-theme';
-@import '~ngx-bar-rating/themes/br-fontawesome-o-theme';
-@import '~ngx-bar-rating/themes/br-stars-theme';
+@import '~@angular/material/theming';  // Necessary style for the rating bar with stars
+@import '~ngx-bar-rating/themes/br-default-theme'; // Necessary style for the rating bar
+@import '~ngx-bar-rating/themes/br-bootstrap-theme'; // Necessary style for the rating bar
+@import '~ngx-bar-rating/themes/br-fontawesome-theme'; // Necessary style for the rating bar
+@import '~ngx-bar-rating/themes/br-fontawesome-o-theme'; // Necessary style for the rating bar
+@import '~ngx-bar-rating/themes/br-stars-theme'; // Necessary style for the rating bar
 @mixin theme-color-grabber($theme) {
   $primary: map_get($theme, primary);
   .primaryColorBG {
