@@ -17,7 +17,7 @@ import { readFile } from 'fs';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   profileForm: FormGroup;
   user: User;
@@ -49,26 +49,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.loading = false;
   }
 
-  ngOnDestroy() {
-    // this.userSub.unsubscribe();
-  }
-
-  formControllError(
-    formControl: string,
-    errorCode: string,
-    preRequired?: string[]
-  ): boolean {
-    if (preRequired && preRequired.length > 0) {
-      for (let i = 0; i < preRequired.length; i++) {
-        if (this.signupForm.get(formControl).hasError(preRequired[i])) {
-          return false;
-        }
-      }
-    }
-    return this.signupForm.get(formControl).hasError(errorCode);
-  }
-
-  sigUp() {
+  signUp() {
     const signupModel = this.signupForm.value as User;
     this.authService.signUpUser(signupModel);
     this.signedUp = true;
@@ -88,13 +69,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
 
 
-  unchanger(): boolean {
-    const model = this.profileForm.value as User;
-    return (
-      model.name === this.user.name &&
-      model.address === this.user.address &&
-      model.contactEmail === this.user.contactEmail
-    );
+  formControlError(formControl: string, errorCode: string, preRequired?: string[]): boolean {
+    if (preRequired && preRequired.length > 0) {
+      for (let i = 0; i < preRequired.length; i++) {
+        if (this.signupForm.get(formControl).hasError(preRequired[i])) {
+          return false;
+        }
+      }
+    }
+    return this.signupForm.get(formControl).hasError(errorCode);
   }
 
   fcErr(fc: string, ec: string, pre?: string[]): boolean {

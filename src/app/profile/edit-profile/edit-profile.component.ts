@@ -101,17 +101,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     );
   }
 
-  fcErr(fc: string, ec: string, pre?: string[]): boolean {
-    if (pre && pre.length > 0) {
-      for (let i = 0; i < pre.length; i++) {
-        if (this.profileForm.get(fc).hasError(pre[i])) {
-          return false;
-        }
-      }
-    }
-    return this.profileForm.get(fc).hasError(ec);
-  }
-
   hovering(isHovering: boolean) {
     this.isHovering = isHovering;
   }
@@ -139,5 +128,16 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       });
       this.hovering(false);
     }
+  }
+
+  fcErr(fc: string, ec: string, pre?: string[]): boolean {
+    if (pre && pre.length > 0) {
+      for (let i = 0; i < pre.length; i++) {
+        if (this.profileForm.get(fc).hasError(pre[i])) {
+          return false;
+        }
+      }
+    }
+    return this.profileForm.get(fc).hasError(ec);
   }
 }

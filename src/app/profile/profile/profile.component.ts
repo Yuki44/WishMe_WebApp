@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
   user: User;
   userSub: Subscription;
   img?: String;

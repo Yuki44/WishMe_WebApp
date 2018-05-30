@@ -12,34 +12,34 @@
       <form [formGroup]="signupForm" novalidate fxLayout="column">
         <mat-form-field fxFlex style="transform: perspective(1px)">
           <input matInput placeholder="Email" formControlName="email">
-          <mat-error *ngIf="formControllError('email', 'required')">
+          <mat-error *ngIf="formControlError('email', 'required')">
             Email is required
           </mat-error>
-          <mat-error *ngIf="formControllError('email', 'email', ['required'])">
+          <mat-error *ngIf="formControlError('email', 'email', ['required'])">
             Email is invalid
           </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field fxFlex>
           <input matInput placeholder="Password" type="password" formControlName="password">
-          <mat-error *ngIf="formControllError('password', 'required')">
+          <mat-error *ngIf="formControlError('password', 'required')">
             Password is required
           </mat-error>
-          <mat-error *ngIf="formControllError('password', 'minLength', ['required'])">
+          <mat-error *ngIf="formControlError('password', 'minLength', ['required'])">
             Password has to consist of at least 6 characters
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex>
           <input matInput placeholder="Repeat Password" type="password" formControlName="repeatedPass">
-          <mat-error *ngIf="formControllError('repeatedPass', 'required')">
+          <mat-error *ngIf="formControlError('repeatedPass', 'required')">
             Rrepeated password is required
           </mat-error>
-          <mat-error *ngIf="formControllError('repeatedPass', 'not-matching-pass', ['required'])">
+          <mat-error *ngIf="formControlError('repeatedPass', 'not-matching-pass', ['required'])">
             Rrepeated password does not match
           </mat-error>
         </mat-form-field>
         <div fxLayout="row" fx-flex fxFlexAlign="end">
-          <button mat-fab color="primary" [disabled]="signupForm.invalid" (click)="sigUp()">
+          <button mat-fab color="primary" [disabled]="signupForm.invalid" (click)="signUp()">
             <mat-icon style="color:white">save</mat-icon>
           </button>
         </div>

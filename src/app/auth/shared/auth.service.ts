@@ -34,12 +34,6 @@ export class AuthService {
       });
   }
 
-  isAuthenticated(): Observable<boolean> {
-    return this.fireAuth.authState.map(authState => {
-      return authState !== null;
-    });
-  }
-
   getAuthUser(): Observable<User> {
     return this.fireAuth.authState.map(authState => {
       if (!authState) {
@@ -47,6 +41,12 @@ export class AuthService {
       }
       console.log('auth.service/getAuthUser(): ' + authState.uid);
       return { email: authState.email, uid: authState.uid };
+    });
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.fireAuth.authState.map(authState => {
+      return authState !== null;
     });
   }
 }

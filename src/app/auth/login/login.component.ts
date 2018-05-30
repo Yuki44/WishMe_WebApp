@@ -15,11 +15,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private route: Router,
     private fb: FormBuilder,
-    private snack: MatSnackBar,
-    private route: Router
-  ) {
-    this.loginForm = fb.group({
+    private snack: MatSnackBar)
+  {
+    this.loginForm =
+      fb.group({
       email: '',
       password: ''
     });
