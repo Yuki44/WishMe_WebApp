@@ -5,8 +5,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable()
 export class WishlistService {
-  whislists: WishList[];
-  list: WishList;
+
   constructor(private afs: AngularFirestore) {}
 
   getWishLists(uid: string): Observable<any> {
@@ -21,6 +20,7 @@ export class WishlistService {
       });
     });
   }
+
   getOneWishlist(uid: string): Observable<any> {
     return this.afs
       .collection('wishlist')
@@ -39,6 +39,7 @@ export class WishlistService {
       });
     }
   }
+
   updateWishList(list: WishList): Promise<any> {
     return this.afs
       .collection('wishlist')

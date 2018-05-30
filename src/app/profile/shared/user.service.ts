@@ -41,6 +41,7 @@ export class UserService {
         });
     });
   }
+
   getUserWithProfileUrl(): Observable<User> {
     return this.getUser().switchMap(user => {
       if (!user) {

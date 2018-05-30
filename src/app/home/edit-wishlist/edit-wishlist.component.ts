@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { WishList } from '../../shared/entities/wish-list';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { AddWishlistComponent } from '../add-wishlist/add-wishlist.component';
 
@@ -12,7 +11,6 @@ import { AddWishlistComponent } from '../add-wishlist/add-wishlist.component';
 export class EditWishlistComponent implements OnInit {
   form: FormGroup;
 
-  wishList: WishList;
 
   constructor(
     public dialogRef: MatDialogRef<AddWishlistComponent>,
@@ -30,8 +28,8 @@ export class EditWishlistComponent implements OnInit {
     });
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  save() {
+    this.dialogRef.close(`${this.form.value.name}`);
   }
 
   fcErr(fc: string, ec: string, pre?: string[]): boolean {
@@ -44,7 +42,5 @@ export class EditWishlistComponent implements OnInit {
     }
     return this.form.get(fc).hasError(ec);
   }
-  save() {
-    this.dialogRef.close(`${this.form.value.name}`);
-  }
+
 }
